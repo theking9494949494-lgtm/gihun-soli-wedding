@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>윤기훈 ♥ 한솔이 · 모바일 청첩장 시안</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=Caveat:wght@500&display=swap" rel="stylesheet">
+  <style>
+    html { -webkit-font-smoothing: antialiased; }
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .serif { font-family: 'Cormorant Garamond', serif; }
+    .hand { font-family: 'Caveat', cursive; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp 0.9s cubic-bezier(.16,.84,.44,1) backwards; }
+    .card-hover { transition: all 0.4s cubic-bezier(.25,.8,.25,1); }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.12); }
+  </style>
+</head>
+<body class="bg-[#FAFAF8] text-stone-900 min-h-screen">
+  <div class="max-w-2xl mx-auto px-5 py-16 md:py-24">
+
+    <header class="text-center mb-14 fade-up">
+      <p class="text-[10px] tracking-[0.5em] text-stone-400 uppercase">Mobile Wedding Invitation</p>
+      <h1 class="serif text-5xl md:text-6xl mt-6 tracking-tight font-light leading-[1.05]">
+        기훈 <span class="text-rose-400">&amp;</span> 솔이
+      </h1>
+      <p class="hand text-2xl text-rose-400 mt-2">2026. 12. 13</p>
+      <p class="mt-6 text-[13px] text-stone-500 leading-relaxed">
+        7가지 컨셉의 모바일 청첩장 시안입니다.<br>
+        각 카드를 눌러 확인해 보세요.
+      </p>
+    </header>
+
+    <section class="mb-10">
+      <p class="text-[10px] tracking-[0.4em] text-stone-400 uppercase mb-4 fade-up">일반형 · Classic</p>
+      <ul class="space-y-4">
+
+        <!-- 01 Minimal -->
+        <li class="fade-up" style="animation-delay:60ms">
+          <a href="01-minimal.html" target="_blank" rel="noopener"
+             class="card-hover group block bg-white border border-stone-200 p-7 md:p-9 relative overflow-hidden">
+            <div class="flex items-baseline justify-between">
+              <p class="text-[10px] tracking-[0.4em] text-stone-400">01</p>
+              <span class="text-[10px] tracking-widest text-[#B8977E] font-medium">MINIMAL</span>
+            </div>
+            <h2 class="serif text-2xl md:text-3xl mt-4 font-light italic">Minimal Typography</h2>
+            <p class="text-sm text-stone-500 mt-1">미니멀 타이포그래피</p>
+            <p class="text-[13px] text-stone-600 mt-4 leading-relaxed">
+              여백과 세리프 폰트로 품격을 표현하는 가장 세련된 스타일.
+              투아워게스트·살롱드레터 감성.
+            </p>
+            <p class="mt-6 text-[11px] tracking-[0.2em] text-stone-400 group-hover:text-stone-800 transition flex items-center gap-2">
+              VIEW <span class="group-hover:translate-x-1 transition-transform">→</span>
+            </p>
+          </a>
+        </li>
+
+        <!-- 02 Fullcover -->
+        <li class="fade-up" style="animation-delay:120ms">
+          <a href="02-fullcover.html" target="_blank" rel="noopener"
+             class="card-hover group block bg-stone-900 text-white border border-stone-800 p-7 md:p-9 relative overflow-hidden">
+            <div class="absolute inset-0 opacity-20" style="background:url('assets/photos/main-sign.jpg') center/cover;"></div>
+            <div class="relative">
+              <div class="flex items-baseline justify-between">
+                <p class="text-[10px] tracking-[0.4em] text-stone-400">02</p>
+                <span class="text-[10px] tracking-widest text-white/80 font-medium">FULLCOVER</span>
+              </div>
+              <h2 class="serif text-2xl md:text-3xl mt-4 font-light italic">Full-Cover Photo</h2>
+              <p class="text-sm text-stone-400 mt-1">풀커버 사진형</p>
+              <p class="text-[13px] text-stone-300 mt-4 leading-relaxed">
+                사진이 화면을 가득 채우는 임팩트. 패럴랙스 스크롤과 다크 오버레이로 모던한 분위기.
+              </p>
+              <p class="mt-6 text-[11px] tracking-[0.2em] text-stone-500 group-hover:text-white transition flex items-center gap-2">
+                VIEW <span class="group-hover:translate-x-1 transition-transform">→</span>
+              </p>
+            </div>
+          </a>
+        </li>
+
+        <!-- 03 Letter -->
+        <li class="fade-up" style="animation-delay:180ms">
+          <a href="03-letter.html" target="_blank" rel="noopener"
+             class="card-hover group block bg-[#FDF8F0] border border-[#E8DDD0] p-7 md:p-9 relative overflow-hidden">
+            <div class="flex items-baseline justify-between">
+              <p class="text-[10px] tracking-[0.4em] text-[#8B7355]">03</p>
+              <span class="text-[10px] tracking-widest text-[#8B7355] font-medium">LETTER</span>
+            </div>
+            <h2 class="serif text-2xl md:text-3xl mt-4 font-light italic">Analog Letter</h2>
+            <p class="text-sm text-[#8B7355] mt-1">감성 편지형</p>
+            <p class="text-[13px] text-stone-600 mt-4 leading-relaxed">
+              봉투를 열면 편지가 나오는 인터랙션. 폴라로이드 갤러리와 왁스실 모티브로 따뜻한 아날로그 감성.
+            </p>
+            <p class="mt-6 text-[11px] tracking-[0.2em] text-stone-400 group-hover:text-stone-800 transition flex items-center gap-2">
+              VIEW <span class="group-hover:translate-x-1 transition-transform">→</span>
+            </p>
+          </a>
+        </li>
+
+        <!-- 08 Classic (정통 완성형 · 살롱드레터 스타일) -->
+        <li class="fade-up" style="animation-delay:210ms">
+          <a href="08-classic.html" target="_blank" rel="noopener"
+             class="card-hover group block bg-[#F6F1EA] border border-[#E2D5C5] p-7 md:p-9 relative overflow-hidden">
+            <span class="absolute top-4 right-4 text-[9px] tracking-widest text-white bg-[#B8977E] px-2 py-1">추천</span>
+            <div class="flex items-baseline justify-between">
+              <p class="text-[10px] tracking-[0.4em] text-[#B8977E]">08</p>
+              <span class="text-[10px] tracking-widest text-[#B8977E] font-medium">CLASSIC</span>
+            </div>
+            <h2 class="serif text-2xl md:text-3xl mt-4 font-light italic">정통 완성형</h2>
+            <p class="text-sm text-[#8B7355] mt-1">실용 모듈 풀세트</p>
+            <p class="text-[13px] text-stone-600 mt-4 leading-relaxed">
+              상용 청첩장(살롱드레터) 스타일. 상단 메뉴·월 캘린더·실시간 카운트다운·길찾기(카카오/네이버/T맵)·계좌·참석여부+개인정보 동의·게스트스냅·카카오 공유·BGM까지 빠짐없이.
+            </p>
+            <p class="mt-6 text-[11px] tracking-[0.2em] text-stone-400 group-hover:text-stone-800 transition flex items-center gap-2">
+              VIEW <span class="group-hover:translate-x-1 transition-transform">→</span>
+            </p>
+          </a>
+        </li>
+
+      </ul>
+    </section>
+
+    <section>
+      <p class="text-[10px] tracking-[0.4em] text-stone-400 uppercase mb-4 fade-up" style="animation-delay:240ms">컨셉형 · Creative</p>
+      <ul class="space-y-4">
+
+        <!-- 04 Movie -->
+        <li class="fade-up" style="animation-delay:300ms">
+          <a href="04-movie.html" target="_blank" rel="noopener"
+             class="card-hover group block bg-[#0A0A0A] text-white border border-[#333] p-7 md:p-9 relative overflow-hidden">
+            <div class="flex items-baseline justify-between">
+              <p class="text-[10px] tracking-[0.4em] text-stone-500">04</p>
+              <span class="text-[10px] tracking-widest text-[#D4AF37] font-medium">CINEMA</span>
+            </div>
+            <h2 class="serif text-2xl md:text-3xl mt-4 font-light italic text-[#D4AF37]">Movie Premiere</h2>
+            <p class="text-sm text-stone-400 mt-1">영화 포스터형</p>
+            <p class="text-[13px] text-stone-400 mt-4 leading-relaxed">
+              결혼식을 영화 개봉일로. 크레딧 롤, 필름 스트립 갤러리, 시네마틱 그레인 효과.
+            </p>
+            <p class="mt-6 text-[11px] tracking-[0.2em] text-stone-600 group-hover:text-[#D4AF37] transition flex items-center gap-2">
+              VIEW <span class="group-hover:translate-x-1 transition-transform">→</span>
+            </p>
+          </a>
+        </li>
+
+        <!-- 05 RPG -->
+        <li class="fade-up" style="animation-delay:360ms">
+          <a href="05-rpg.html" target="_blank" rel="noopener"
+             class="card-hover group block bg-[#1a1a2e] text-white border border-[#2a2a4e] p-7 md:p-9 relative overflow-hidden">
+            <div class="flex items-baseline justify-between">
+              <p class="text-[10px] tracking-[0.4em] text-[#00ff88]/60">05</p>
+              <span class="text-[10px] tracking-widest text-[#00ff88] font-medium">RPG</span>
+            </div>
+            <h2 class="text-2xl md:text-3xl mt-4 font-bold" style="font-family:'Press Start 2P',monospace; font-size:14px; line-height:1.8;">QUEST: 결혼식</h2>
+            <p class="text-sm text-[#00ff88]/70 mt-2">레트로 RPG 게임형</p>
+            <p class="text-[13px] text-stone-300 mt-4 leading-relaxed">
+              두 사람의 사랑을 퀘스트로. 픽셀아트 UI, 대화창, EXP 바, 파티 합류 시스템.
+            </p>
+            <p class="mt-6 text-[11px] tracking-[0.2em] text-[#00ff88]/50 group-hover:text-[#00ff88] transition flex items-center gap-2">
+              ▶ START <span class="group-hover:translate-x-1 transition-transform">→</span>
+            </p>
+          </a>
+        </li>
+
+        <!-- 06 Magazine -->
+        <li class="fade-up" style="animation-delay:420ms">
+          <a href="06-magazine.html" target="_blank" rel="noopener"
+             class="card-hover group block bg-white border-2 border-stone-900 p-7 md:p-9 relative overflow-hidden">
+            <div class="flex items-baseline justify-between">
+              <p class="text-[10px] tracking-[0.4em] text-stone-400">06</p>
+              <span class="text-[10px] tracking-widest text-[#E8634F] font-bold uppercase">Magazine</span>
+            </div>
+            <h2 class="text-2xl md:text-3xl mt-4 font-black uppercase tracking-tight" style="font-family:'Oswald',sans-serif;">LOVE & LIFE</h2>
+            <p class="text-sm text-stone-500 mt-1">매거진 에디토리얼형</p>
+            <p class="text-[13px] text-stone-600 mt-4 leading-relaxed">
+              패션 잡지 레이아웃. 커버 스토리, 에디터스 노트, 포토 에세이, 독자 투고까지.
+            </p>
+            <p class="mt-6 text-[11px] tracking-[0.2em] text-stone-400 group-hover:text-stone-900 transition flex items-center gap-2">
+              VIEW <span class="group-hover:translate-x-1 transition-transform">→</span>
+            </p>
+          </a>
+        </li>
+
+        <!-- 07 Ticket -->
+        <li class="fade-up" style="animation-delay:480ms">
+          <a href="07-ticket.html" target="_blank" rel="noopener"
+             class="card-hover group block bg-[#E8F4FD] border border-[#B8D8E8] p-7 md:p-9 relative overflow-hidden">
+            <div class="absolute top-4 right-4 text-[10px] font-mono text-[#1B365D]/40">KH♥SI-1213</div>
+            <div class="flex items-baseline justify-between">
+              <p class="text-[10px] tracking-[0.4em] text-[#1B365D]/60">07</p>
+              <span class="text-[10px] tracking-widest text-[#FF6B6B] font-medium">BOARDING PASS</span>
+            </div>
+            <h2 class="text-2xl md:text-3xl mt-4 font-semibold text-[#1B365D]" style="font-family:'Space Mono',monospace; font-size:18px;">FLIGHT KH♥SI</h2>
+            <p class="text-sm text-[#1B365D]/60 mt-1">여행 티켓형</p>
+            <p class="text-[13px] text-[#1B365D]/80 mt-4 leading-relaxed">
+              결혼은 함께 떠나는 여행. 탑승권 UI, 출발 안내판, 기내 갤러리, 면세점 축의금.
+            </p>
+            <p class="mt-6 text-[11px] tracking-[0.2em] text-[#1B365D]/40 group-hover:text-[#1B365D] transition flex items-center gap-2">
+              BOARD <span class="group-hover:translate-x-1 transition-transform">→</span>
+            </p>
+          </a>
+        </li>
+
+      </ul>
+    </section>
+
+    <footer class="text-center mt-16 fade-up" style="animation-delay:540ms">
+      <p class="text-[11px] text-stone-400">각 시안은 독립적인 싱글 페이지입니다.</p>
+      <p class="text-[11px] text-stone-300 mt-1">마음에 드는 컨셉을 골라주세요.</p>
+    </footer>
+
+  </div>
+</body>
+</html>

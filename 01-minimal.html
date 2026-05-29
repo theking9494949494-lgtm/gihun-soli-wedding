@@ -1,0 +1,1070 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>윤기훈 ♥ 한솔이 · 2026.12.13</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Serif+KR:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg:      #FAFAF8;
+      --text:    #2C2C2C;
+      --muted:   #8A8A8A;
+      --gold:    #B8977E;
+      --gold-lt: #D9C4AF;
+      --border:  #E8E4DE;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Noto Serif KR', 'Cormorant Garamond', Georgia, serif;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    /* ── Layout ── */
+    .page { max-width: 480px; margin: 0 auto; }
+    .section { padding: 80px 32px; }
+    .section--lg { padding: 100px 32px; }
+    .section--sm { padding: 56px 32px; }
+    .divider {
+      width: 1px;
+      height: 48px;
+      background: var(--gold-lt);
+      margin: 0 auto;
+    }
+
+    /* ── Typography ── */
+    .serif-en {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 300;
+    }
+    .label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 400;
+    }
+    .heading-xl {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(42px, 11vw, 56px);
+      font-weight: 300;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+      color: var(--text);
+    }
+    .heading-lg {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 7vw, 36px);
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      line-height: 1.3;
+      color: var(--text);
+    }
+    .body-ko {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 2;
+      color: #5A5A5A;
+      letter-spacing: 0.02em;
+    }
+    .caption {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 11px;
+      font-weight: 300;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── Scroll animation ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.9s cubic-bezier(0.16, 0.84, 0.44, 1),
+                  transform 0.9s cubic-bezier(0.16, 0.84, 0.44, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.12s; }
+    .reveal-delay-2 { transition-delay: 0.24s; }
+    .reveal-delay-3 { transition-delay: 0.36s; }
+    .reveal-delay-4 { transition-delay: 0.48s; }
+
+    /* ── Cover ── */
+    #cover {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 48px 32px;
+      position: relative;
+    }
+    #cover::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 1px; height: 64px;
+      background: linear-gradient(to bottom, transparent, var(--gold-lt));
+    }
+    .cover-names {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 9vw, 48px);
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      line-height: 1.2;
+      color: var(--text);
+    }
+    .cover-ampersand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(20px, 5vw, 26px);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--gold);
+      display: block;
+      margin: 12px 0;
+      letter-spacing: 0.1em;
+    }
+    .cover-date {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      letter-spacing: 0.4em;
+      color: var(--muted);
+      font-weight: 400;
+      margin-top: 28px;
+    }
+
+    /* ── Section headings ── */
+    .section-rule {
+      width: 24px;
+      height: 1px;
+      background: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    /* ── Gallery ── */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 6px;
+    }
+    .gallery-grid img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      display: block;
+    }
+    .gallery-grid img:first-child {
+      grid-column: 1 / -1;
+      aspect-ratio: 4/3;
+    }
+
+    /* ── Date block ── */
+    .date-block {
+      border: 1px solid var(--border);
+      padding: 32px;
+      text-align: center;
+    }
+    .date-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(52px, 13vw, 72px);
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+    .date-divider {
+      width: 40px;
+      height: 1px;
+      background: var(--gold-lt);
+      margin: 20px auto;
+    }
+    .dday-badge {
+      display: inline-block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      border: 1px solid var(--gold-lt);
+      padding: 6px 16px;
+      margin-top: 20px;
+    }
+
+    /* ── Accordion ── */
+    .accordion-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .accordion-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      font-family: 'Noto Serif KR', serif;
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text);
+      letter-spacing: 0.04em;
+    }
+    .accordion-icon {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--gold);
+      transition: transform 0.35s ease;
+      flex-shrink: 0;
+      margin-left: 12px;
+    }
+    .accordion-item.open .accordion-icon {
+      transform: rotate(45deg);
+    }
+    .accordion-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.45s cubic-bezier(0.16, 0.84, 0.44, 1);
+    }
+    .accordion-item.open .accordion-body {
+      max-height: 320px;
+    }
+    .accordion-content {
+      padding-bottom: 24px;
+    }
+    .account-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .account-row:last-child { border-bottom: none; }
+    .copy-btn {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      border: 1px solid var(--gold-lt);
+      background: none;
+      padding: 4px 10px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .copy-btn:hover {
+      background: var(--gold);
+      color: var(--bg);
+    }
+    .copy-btn.copied {
+      background: var(--gold);
+      color: var(--bg);
+    }
+
+    /* ── RSVP Form ── */
+    .form-field {
+      margin-bottom: 24px;
+    }
+    .form-label {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .form-input {
+      width: 100%;
+      background: none;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      padding: 10px 0;
+      font-family: 'Noto Serif KR', serif;
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .form-input:focus {
+      border-color: var(--gold);
+    }
+    .form-input::placeholder {
+      color: var(--muted);
+      font-weight: 300;
+    }
+    .radio-group {
+      display: flex;
+      gap: 20px;
+    }
+    .radio-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-family: 'Noto Serif KR', serif;
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text);
+    }
+    .radio-label input[type="radio"] {
+      appearance: none;
+      width: 14px;
+      height: 14px;
+      border: 1px solid var(--gold-lt);
+      border-radius: 50%;
+      position: relative;
+      cursor: pointer;
+      transition: border-color 0.2s;
+      flex-shrink: 0;
+    }
+    .radio-label input[type="radio"]:checked {
+      border-color: var(--gold);
+    }
+    .radio-label input[type="radio"]:checked::after {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+    .submit-btn {
+      width: 100%;
+      padding: 16px;
+      background: var(--text);
+      color: var(--bg);
+      border: none;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+      margin-top: 8px;
+    }
+    .submit-btn:hover {
+      background: var(--gold);
+    }
+
+    /* ── Guestbook ── */
+    .message-card {
+      border: 1px solid var(--border);
+      padding: 20px;
+      margin-bottom: 10px;
+    }
+    .message-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .message-text {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.9;
+    }
+    .message-date {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.2em;
+      margin-top: 10px;
+    }
+    .guestbook-input {
+      width: 100%;
+      background: none;
+      border: 1px solid var(--border);
+      padding: 16px;
+      font-family: 'Noto Serif KR', serif;
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text);
+      outline: none;
+      resize: none;
+      line-height: 1.8;
+      transition: border-color 0.3s;
+    }
+    .guestbook-input:focus {
+      border-color: var(--gold);
+    }
+    .guestbook-input::placeholder {
+      color: var(--muted);
+    }
+
+    /* ── Contact ── */
+    .contact-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .contact-row:first-child { border-top: 1px solid var(--border); }
+    .contact-name {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text);
+    }
+    .contact-role {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      margin-top: 2px;
+    }
+    .phone-btn {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      border: 1px solid var(--gold-lt);
+      background: none;
+      padding: 6px 14px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s, color 0.2s;
+    }
+    .phone-btn:hover {
+      background: var(--gold);
+      color: var(--bg);
+    }
+
+    /* ── Map placeholder ── */
+    .map-placeholder {
+      width: 100%;
+      height: 180px;
+      background: var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 24px 0 20px;
+    }
+
+    /* ── Closing ── */
+    #closing {
+      text-align: center;
+      padding: 100px 32px 80px;
+    }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 0; }
+
+    /* ── Toast ── */
+    #toast {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%) translateY(12px);
+      background: var(--text);
+      color: var(--bg);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      padding: 10px 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s;
+      z-index: 999;
+      white-space: nowrap;
+    }
+    #toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+<div class="page">
+
+  <!-- ════════════════════════════════
+       SECTION 1 · COVER
+  ════════════════════════════════ -->
+  <section id="cover">
+    <div class="reveal">
+      <p class="label" style="margin-bottom: 48px;">Wedding Invitation</p>
+    </div>
+
+    <div class="reveal reveal-delay-1">
+      <h1 class="cover-names">
+        기훈
+        <span class="cover-ampersand">그리고</span>
+        솔이
+      </h1>
+    </div>
+
+    <div class="reveal reveal-delay-2">
+      <p class="cover-date">2026 · XII · XIII</p>
+    </div>
+
+    <div class="reveal reveal-delay-3" style="margin-top: 56px;">
+      <p class="caption" style="line-height: 2.2; color: var(--muted);">
+        서울 강남구<br>
+        아펠가모 홀
+      </p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════
+       SECTION 2 · 인사말
+  ════════════════════════════════ -->
+  <section class="section--lg" style="text-align: center;" id="greeting">
+    <div class="reveal">
+      <div class="section-rule" style="margin: 0 auto 20px;"></div>
+      <p class="label" style="margin-bottom: 40px;">인사말</p>
+    </div>
+
+    <div class="reveal reveal-delay-1">
+      <p class="heading-lg" style="font-style: italic; color: var(--gold); margin-bottom: 32px;">
+        "결실을 맺어<br>결혼하게 되었습니다"
+      </p>
+    </div>
+
+    <div class="reveal reveal-delay-2">
+      <p class="body-ko" style="text-align: center;">
+        서로에게 가장 솔직한 친구였던 두 사람이<br>
+        이제 평생의 동반자가 되려 합니다.<br><br>
+        함께하는 매일이 설레고<br>
+        함께 나누는 모든 것이 감사한,<br>
+        그런 사람을 만났습니다.<br><br>
+        소중한 분들과 함께<br>
+        이 기쁨을 나누고 싶습니다.
+      </p>
+    </div>
+
+    <div class="reveal reveal-delay-3" style="margin-top: 40px;">
+      <p class="caption">
+        윤기훈 · 한솔이 드림
+      </p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════
+       SECTION 3 · 예식 일시
+  ════════════════════════════════ -->
+  <section class="section" id="datetime">
+    <div class="reveal">
+      <div class="section-rule"></div>
+      <p class="label" style="margin-bottom: 40px;">예식 일시</p>
+    </div>
+
+    <div class="reveal reveal-delay-1">
+      <div class="date-block">
+        <p class="caption" style="letter-spacing: 0.3em; margin-bottom: 16px;">SUNDAY</p>
+        <p class="date-number">2026</p>
+        <div style="display: flex; align-items: center; justify-content: center; gap: 16px; margin: 8px 0;">
+          <span style="font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; color: var(--gold);">12</span>
+          <span style="width: 1px; height: 28px; background: var(--border); display: block;"></span>
+          <span style="font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; color: var(--gold);">13</span>
+        </div>
+        <div class="date-divider"></div>
+        <p class="body-ko" style="text-align: center; font-size: 15px; color: var(--text);">
+          일요일 오후 2시
+        </p>
+        <div class="dday-badge" id="dday-badge">D-DAY 계산 중</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════
+       SECTION 4 · 갤러리
+  ════════════════════════════════ -->
+  <section class="section--sm" id="gallery">
+    <div class="reveal">
+      <div class="section-rule"></div>
+      <p class="label" style="margin-bottom: 40px;">우리의 이야기</p>
+    </div>
+
+    <div class="reveal reveal-delay-1">
+      <div class="gallery-grid">
+        <img src="assets/photos/main-sign.jpg" alt="기훈과 솔이" loading="lazy">
+        <img src="assets/photos/day-facing.jpg" alt="함께" loading="lazy">
+        <img src="assets/photos/day-field.jpg" alt="들판" loading="lazy">
+        <img src="assets/photos/day-path.jpg" alt="산책" loading="lazy">
+        <img src="assets/photos/day-running.jpg" alt="달리기" loading="lazy">
+        <img src="assets/photos/night-sunset.jpg" alt="노을" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════
+       SECTION 5 · 예식장 안내
+  ════════════════════════════════ -->
+  <section class="section" id="venue">
+    <div class="reveal">
+      <div class="section-rule"></div>
+      <p class="label" style="margin-bottom: 40px;">예식장 안내</p>
+    </div>
+
+    <div class="reveal reveal-delay-1">
+      <h2 class="heading-lg" style="margin-bottom: 8px;">아펠가모</h2>
+      <p class="caption" style="letter-spacing: 0.2em; margin-bottom: 24px;">APELGAMO HALL</p>
+    </div>
+
+    <div class="reveal reveal-delay-2">
+      <p class="body-ko" style="margin-bottom: 4px;">서울특별시 강남구</p>
+      <p class="body-ko" style="margin-bottom: 28px;">논현로 508 아펠가모</p>
+    </div>
+
+    <div class="reveal reveal-delay-2">
+      <div class="map-placeholder">
+        <p class="caption" style="text-align: center; line-height: 2;">
+          지도<br>
+          <span style="font-size: 10px; color: var(--gold-lt);">MAP PLACEHOLDER</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="reveal reveal-delay-3">
+      <div style="border-top: 1px solid var(--border); padding-top: 24px;">
+        <p class="label" style="margin-bottom: 16px;">오시는 방법</p>
+        <p class="body-ko" style="font-size: 13px; margin-bottom: 8px;">
+          <span style="color: var(--gold);">지하철</span> 7호선 논현역 1번 출구 도보 5분
+        </p>
+        <p class="body-ko" style="font-size: 13px; margin-bottom: 8px;">
+          <span style="color: var(--gold);">버스</span> 강남 논현동 정류장 하차
+        </p>
+        <p class="body-ko" style="font-size: 13px;">
+          <span style="color: var(--gold);">주차</span> 건물 내 주차장 이용 가능
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════
+       SECTION 6 · 계좌번호
+  ════════════════════════════════ -->
+  <section class="section" id="accounts">
+    <div class="reveal">
+      <div class="section-rule"></div>
+      <p class="label" style="margin-bottom: 16px;">마음 전하기</p>
+      <p class="body-ko" style="font-size: 13px; margin-bottom: 32px;">
+        참석이 어려우신 분들께서는<br>마음만 전달해 주셔도 감사합니다.
+      </p>
+    </div>
+
+    <div class="reveal reveal-delay-1" id="accordion">
+
+      <!-- 신랑측 -->
+      <div class="accordion-item">
+        <button class="accordion-btn" data-accordion>
+          <span>
+            <span class="label" style="display: block; margin-bottom: 4px; font-size: 9px;">신랑측</span>
+            윤기훈 · 아버지 윤OO · 어머니 OOO
+          </span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-content">
+            <div class="account-row">
+              <div>
+                <p class="caption" style="margin-bottom: 2px;">신랑 윤기훈</p>
+                <p style="font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 0.08em; color: var(--text);">
+                  카카오뱅크 3333-00-0000000
+                </p>
+              </div>
+              <button class="copy-btn" data-copy="3333000000000" data-bank="카카오뱅크">COPY</button>
+            </div>
+            <div class="account-row">
+              <div>
+                <p class="caption" style="margin-bottom: 2px;">아버지 윤OO</p>
+                <p style="font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 0.08em; color: var(--text);">
+                  국민은행 000000-00-000000
+                </p>
+              </div>
+              <button class="copy-btn" data-copy="00000000000000" data-bank="국민은행">COPY</button>
+            </div>
+            <div class="account-row">
+              <div>
+                <p class="caption" style="margin-bottom: 2px;">어머니 OOO</p>
+                <p style="font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 0.08em; color: var(--text);">
+                  신한은행 110-000-000000
+                </p>
+              </div>
+              <button class="copy-btn" data-copy="110000000000" data-bank="신한은행">COPY</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 신부측 -->
+      <div class="accordion-item">
+        <button class="accordion-btn" data-accordion>
+          <span>
+            <span class="label" style="display: block; margin-bottom: 4px; font-size: 9px;">신부측</span>
+            한솔이 · 아버지 한OO · 어머니 OOO
+          </span>
+          <span class="accordion-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-content">
+            <div class="account-row">
+              <div>
+                <p class="caption" style="margin-bottom: 2px;">신부 한솔이</p>
+                <p style="font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 0.08em; color: var(--text);">
+                  카카오뱅크 3333-00-1111111
+                </p>
+              </div>
+              <button class="copy-btn" data-copy="3333001111111" data-bank="카카오뱅크">COPY</button>
+            </div>
+            <div class="account-row">
+              <div>
+                <p class="caption" style="margin-bottom: 2px;">아버지 한OO</p>
+                <p style="font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 0.08em; color: var(--text);">
+                  우리은행 1002-000-000000
+                </p>
+              </div>
+              <button class="copy-btn" data-copy="1002000000000" data-bank="우리은행">COPY</button>
+            </div>
+            <div class="account-row">
+              <div>
+                <p class="caption" style="margin-bottom: 2px;">어머니 OOO</p>
+                <p style="font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 0.08em; color: var(--text);">
+                  농협은행 351-0000-0000-03
+                </p>
+              </div>
+              <button class="copy-btn" data-copy="351000000000003" data-bank="농협은행">COPY</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════
+       SECTION 7 · RSVP
+  ════════════════════════════════ -->
+  <section class="section" id="rsvp">
+    <div class="reveal">
+      <div class="section-rule"></div>
+      <p class="label" style="margin-bottom: 16px;">참석 여부 전달</p>
+      <p class="body-ko" style="font-size: 13px; margin-bottom: 36px;">
+        12월 1일까지 알려주시면 감사하겠습니다.
+      </p>
+    </div>
+
+    <div class="reveal reveal-delay-1">
+      <form id="rsvp-form" onsubmit="submitRsvp(event)">
+        <div class="form-field">
+          <label class="form-label" for="rsvp-name">이름</label>
+          <input class="form-input" id="rsvp-name" type="text" placeholder="성함을 입력해 주세요" required>
+        </div>
+
+        <div class="form-field">
+          <label class="form-label">참석 여부</label>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="attendance" value="yes" required>
+              참석합니다
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="attendance" value="no">
+              참석이 어렵습니다
+            </label>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label class="form-label" for="rsvp-guests">참석 인원</label>
+          <input class="form-input" id="rsvp-guests" type="number" min="1" max="10" placeholder="본인 포함 인원 수">
+        </div>
+
+        <div class="form-field">
+          <label class="form-label" for="rsvp-note">전달 말씀</label>
+          <input class="form-input" id="rsvp-note" type="text" placeholder="식이 제한 등 전달사항 (선택)">
+        </div>
+
+        <button type="submit" class="submit-btn">참석 의사 전달하기</button>
+      </form>
+      <div id="rsvp-done" style="display:none; text-align: center; padding: 32px 0;">
+        <p class="heading-lg" style="font-style: italic; color: var(--gold); margin-bottom: 16px;">감사합니다</p>
+        <p class="body-ko" style="font-size: 13px;">소중한 마음 잘 받았습니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════
+       SECTION 8 · 방명록
+  ════════════════════════════════ -->
+  <section class="section" id="guestbook">
+    <div class="reveal">
+      <div class="section-rule"></div>
+      <p class="label" style="margin-bottom: 16px;">방명록</p>
+      <p class="body-ko" style="font-size: 13px; margin-bottom: 32px;">
+        두 사람에게 따뜻한 말 한마디 남겨주세요.
+      </p>
+    </div>
+
+    <div class="reveal reveal-delay-1">
+      <div id="messages-list" style="margin-bottom: 24px;">
+        <!-- 샘플 메시지 -->
+        <div class="message-card">
+          <p class="message-name">김민준</p>
+          <p class="message-text">
+            기훈아, 솔이야 정말 축하해! 두 사람이 만들어갈 새로운 이야기가 너무 기대된다. 행복하게 살아.
+          </p>
+          <p class="message-date">2026 · 11 · 20</p>
+        </div>
+        <div class="message-card">
+          <p class="message-name">이지현</p>
+          <p class="message-text">
+            솔이 언니, 기훈 오빠 결혼 진심으로 축하드려요. 두 분이 함께하는 모든 날이 빛나길 바랍니다.
+          </p>
+          <p class="message-date">2026 · 11 · 22</p>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 12px;">
+        <input type="text" id="gb-name" class="guestbook-input" placeholder="이름" style="height: 44px; margin-bottom: 8px;">
+        <textarea id="gb-message" class="guestbook-input" rows="4" placeholder="축하 메시지를 남겨주세요..."></textarea>
+      </div>
+      <button onclick="postMessage()" class="submit-btn">메시지 남기기</button>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════
+       SECTION 9 · 연락처
+  ════════════════════════════════ -->
+  <section class="section" id="contact">
+    <div class="reveal">
+      <div class="section-rule"></div>
+      <p class="label" style="margin-bottom: 40px;">연락처</p>
+    </div>
+
+    <div class="reveal reveal-delay-1">
+      <div class="contact-row">
+        <div>
+          <p class="contact-name">윤기훈</p>
+          <p class="contact-role">GROOM</p>
+        </div>
+        <a href="tel:010-0000-0000" class="phone-btn">CALL</a>
+      </div>
+      <div class="contact-row">
+        <div>
+          <p class="contact-name">한솔이</p>
+          <p class="contact-role">BRIDE</p>
+        </div>
+        <a href="tel:010-0000-0001" class="phone-btn">CALL</a>
+      </div>
+      <div class="contact-row">
+        <div>
+          <p class="contact-name">윤OO</p>
+          <p class="contact-role">신랑 아버지</p>
+        </div>
+        <a href="tel:010-0000-0002" class="phone-btn">CALL</a>
+      </div>
+      <div class="contact-row">
+        <div>
+          <p class="contact-name">OOO</p>
+          <p class="contact-role">신랑 어머니</p>
+        </div>
+        <a href="tel:010-0000-0003" class="phone-btn">CALL</a>
+      </div>
+      <div class="contact-row">
+        <div>
+          <p class="contact-name">한OO</p>
+          <p class="contact-role">신부 아버지</p>
+        </div>
+        <a href="tel:010-0000-0004" class="phone-btn">CALL</a>
+      </div>
+      <div class="contact-row">
+        <div>
+          <p class="contact-name">OOO</p>
+          <p class="contact-role">신부 어머니</p>
+        </div>
+        <a href="tel:010-0000-0005" class="phone-btn">CALL</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════
+       SECTION 10 · CLOSING
+  ════════════════════════════════ -->
+  <section id="closing">
+    <div class="reveal" style="margin-bottom: 40px;">
+      <div class="section-rule" style="margin: 0 auto 32px;"></div>
+      <p class="heading-xl" style="text-align: center; font-style: italic; font-size: clamp(32px, 8vw, 44px);">
+        감사합니다
+      </p>
+    </div>
+
+    <div class="reveal reveal-delay-1">
+      <p class="body-ko" style="text-align: center; font-size: 13px; margin-top: 24px;">
+        소중한 걸음으로 함께해 주셔서<br>
+        두 사람의 시작이 더욱 빛납니다.<br><br>
+        오래도록 기억하겠습니다.
+      </p>
+    </div>
+
+    <div class="reveal reveal-delay-2" style="margin-top: 56px; text-align: center;">
+      <p style="font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 0.5em; color: var(--gold-lt);">
+        2026 · XII · XIII
+      </p>
+      <p style="font-family: 'Cormorant Garamond', serif; font-size: 13px; letter-spacing: 0.3em; color: var(--muted); margin-top: 8px;">
+        GIHUN &amp; SOLI
+      </p>
+    </div>
+  </section>
+
+</div><!-- /.page -->
+
+<!-- Toast -->
+<div id="toast"></div>
+
+<script>
+  // ── Scroll reveal ──────────────────────────────────
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Force cover section visible on load
+  document.querySelectorAll('#cover .reveal').forEach((el, i) => {
+    setTimeout(() => el.classList.add('visible'), i * 160);
+  });
+
+  // ── D-Day ──────────────────────────────────────────
+  (function updateDDay() {
+    const target = new Date('2026-12-13T14:00:00+09:00');
+    const now = new Date();
+    const diff = Math.ceil((target - now) / (1000 * 60 * 60 * 24));
+    const badge = document.getElementById('dday-badge');
+    if (!badge) return;
+    if (diff > 0) badge.textContent = `D - ${diff}`;
+    else if (diff === 0) badge.textContent = 'D - DAY';
+    else badge.textContent = `D + ${Math.abs(diff)}`;
+  })();
+
+  // ── Accordion ─────────────────────────────────────
+  document.querySelectorAll('[data-accordion]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.accordion-item');
+      const isOpen = item.classList.contains('open');
+      // Close all
+      document.querySelectorAll('.accordion-item.open').forEach(i => i.classList.remove('open'));
+      // Toggle clicked
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // ── Copy account number ────────────────────────────
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2200);
+  }
+
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const num = btn.dataset.copy;
+      const bank = btn.dataset.bank;
+      navigator.clipboard.writeText(num).then(() => {
+        btn.textContent = 'COPIED';
+        btn.classList.add('copied');
+        showToast(`${bank} ${num} 복사됨`);
+        setTimeout(() => {
+          btn.textContent = 'COPY';
+          btn.classList.remove('copied');
+        }, 2000);
+      }).catch(() => {
+        showToast('복사하려면 직접 선택해 주세요');
+      });
+    });
+  });
+
+  // ── RSVP ──────────────────────────────────────────
+  function submitRsvp(e) {
+    e.preventDefault();
+    const name = document.getElementById('rsvp-name').value.trim();
+    const attendance = document.querySelector('input[name="attendance"]:checked')?.value;
+    const guests = document.getElementById('rsvp-guests').value;
+    if (!name || !attendance) return;
+    document.getElementById('rsvp-form').style.display = 'none';
+    document.getElementById('rsvp-done').style.display = 'block';
+    showToast('참석 의사가 전달되었습니다');
+  }
+
+  // ── Guestbook ─────────────────────────────────────
+  function postMessage() {
+    const nameEl = document.getElementById('gb-name');
+    const msgEl = document.getElementById('gb-message');
+    const name = nameEl.value.trim();
+    const msg = msgEl.value.trim();
+    if (!name || !msg) {
+      showToast('이름과 메시지를 입력해 주세요');
+      return;
+    }
+    const list = document.getElementById('messages-list');
+    const now = new Date();
+    const dateStr = `${now.getFullYear()} · ${String(now.getMonth()+1).padStart(2,'0')} · ${String(now.getDate()).padStart(2,'0')}`;
+    const card = document.createElement('div');
+    card.className = 'message-card';
+    card.innerHTML = `
+      <p class="message-name">${escapeHtml(name)}</p>
+      <p class="message-text">${escapeHtml(msg)}</p>
+      <p class="message-date">${dateStr}</p>
+    `;
+    list.insertBefore(card, list.firstChild);
+    nameEl.value = '';
+    msgEl.value = '';
+    showToast('메시지가 등록되었습니다');
+  }
+
+  function escapeHtml(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  }
+</script>
+
+</body>
+</html>

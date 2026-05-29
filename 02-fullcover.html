@@ -1,0 +1,1325 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>윤기훈 ♥ 한솔이 · 2026.12.13</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #fff;
+      color: #1a1a1a;
+      overflow-x: hidden;
+    }
+    .serif { font-family: 'Cormorant Garamond', serif; }
+
+    /* ── Layout wrapper ── */
+    #app { max-width: 480px; margin: 0 auto; position: relative; }
+
+    /* ── Parallax photo sections ── */
+    .photo-section {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .photo-bg {
+      position: absolute;
+      inset: -15%;
+      background-size: cover;
+      background-position: center;
+      will-change: transform;
+      transition: transform 0.1s linear;
+    }
+    .photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.08) 0%,
+        rgba(0,0,0,0.35) 50%,
+        rgba(0,0,0,0.62) 100%
+      );
+    }
+    .photo-overlay-top {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.55) 0%,
+        rgba(0,0,0,0.20) 40%,
+        rgba(0,0,0,0.0) 100%
+      );
+    }
+    .photo-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 32px 56px;
+      color: #fff;
+    }
+    .photo-content-center {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 32px;
+    }
+
+    /* ── White info sections ── */
+    .white-section {
+      background: #fff;
+      padding: 72px 32px;
+    }
+    .white-section-sm {
+      background: #fff;
+      padding: 56px 32px;
+    }
+    .cream-section {
+      background: #FAF8F5;
+      padding: 64px 32px;
+    }
+
+    /* ── Reveal animation ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.85s cubic-bezier(.16,.84,.44,1), transform 0.85s cubic-bezier(.16,.84,.44,1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.12s; }
+    .reveal-delay-2 { transition-delay: 0.24s; }
+    .reveal-delay-3 { transition-delay: 0.36s; }
+    .reveal-delay-4 { transition-delay: 0.48s; }
+
+    /* ── Hero section ── */
+    #hero { height: 100dvh; }
+    #hero .photo-bg {
+      background-image: url('assets/photos/main-sign.jpg');
+    }
+    #hero .hero-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 56px 32px;
+      color: #fff;
+    }
+    .hero-top-label {
+      font-size: 10px;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.72);
+    }
+    .hero-names {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(52px, 14vw, 68px);
+      font-weight: 300;
+      line-height: 1.0;
+      letter-spacing: -0.01em;
+    }
+    .hero-names em {
+      font-style: italic;
+    }
+    .hero-amp {
+      display: block;
+      font-size: 0.55em;
+      letter-spacing: 0.05em;
+      opacity: 0.65;
+      margin: 4px 0;
+    }
+    .hero-date {
+      font-size: 12px;
+      letter-spacing: 0.3em;
+      color: rgba(255,255,255,0.8);
+      margin-top: 20px;
+    }
+    .scroll-hint {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      font-size: 9px;
+      letter-spacing: 0.35em;
+      color: rgba(255,255,255,0.5);
+    }
+    .scroll-line {
+      width: 1px;
+      height: 48px;
+      background: rgba(255,255,255,0.35);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.35; transform: scaleY(1); }
+      50% { opacity: 0.8; transform: scaleY(1.15); }
+    }
+
+    /* ── Divider ── */
+    .divider {
+      width: 32px;
+      height: 1px;
+      background: currentColor;
+      margin: 0 auto;
+    }
+
+    /* ── 인사말 ── */
+    .greeting-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px;
+      font-weight: 400;
+      line-height: 1.95;
+      color: #2a2a2a;
+      letter-spacing: 0.01em;
+    }
+
+    /* ── 카운트다운 flip-clock ── */
+    .flip-clock {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .flip-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .flip-card {
+      position: relative;
+      width: 64px;
+      height: 72px;
+      perspective: 400px;
+    }
+    .flip-card-inner {
+      width: 100%;
+      height: 100%;
+      background: #1a1a1a;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px;
+      font-weight: 300;
+      color: #fff;
+      letter-spacing: -0.02em;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+      position: relative;
+      overflow: hidden;
+    }
+    .flip-card-inner::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0;
+      top: 50%;
+      height: 1px;
+      background: rgba(255,255,255,0.1);
+    }
+    .flip-card-inner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, transparent 50%, rgba(0,0,0,0.15) 100%);
+    }
+    .flip-label {
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      color: #888;
+      text-transform: uppercase;
+    }
+    .flip-sep {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px;
+      font-weight: 300;
+      color: #ccc;
+      line-height: 72px;
+      margin-top: 0;
+    }
+    .countdown-date-label {
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      color: #999;
+      text-align: center;
+      margin-top: 28px;
+    }
+
+    /* ── 갤러리 photo strip ── */
+    .gallery-strip {
+      height: 65vh;
+      min-height: 400px;
+    }
+    .gallery-label {
+      position: absolute;
+      bottom: 40px;
+      right: 32px;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      color: rgba(255,255,255,0.55);
+      text-transform: uppercase;
+    }
+
+    /* ── 예식장 안내 ── */
+    .map-placeholder {
+      width: 100%;
+      height: 200px;
+      background: #f0ece6;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      color: #aaa;
+      border: 1px solid #e0dbd3;
+      position: relative;
+      overflow: hidden;
+    }
+    .map-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+    .map-pin {
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      border-radius: 50% 50% 50% 0;
+      background: #1a1a1a;
+      transform: rotate(-45deg);
+      left: 50%; top: 45%;
+      margin-left: -14px; margin-top: -14px;
+    }
+    .map-pin::after {
+      content: '';
+      position: absolute;
+      width: 10px; height: 10px;
+      background: #fff;
+      border-radius: 50%;
+      top: 9px; left: 9px;
+    }
+    .venue-info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px 0;
+      border-bottom: 1px solid #f0ece6;
+    }
+    .venue-info-row:last-child { border-bottom: none; }
+    .venue-icon {
+      width: 20px;
+      flex-shrink: 0;
+      font-size: 13px;
+      color: #888;
+      margin-top: 1px;
+    }
+
+    /* ── 계좌번호 accordion ── */
+    .account-item {
+      border-bottom: 1px solid #f0ece6;
+      overflow: hidden;
+    }
+    .account-item:first-child { border-top: 1px solid #f0ece6; }
+    .account-trigger {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+    }
+    .account-trigger-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px;
+      font-weight: 400;
+      color: #1a1a1a;
+    }
+    .account-trigger-role {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: #999;
+      margin-top: 2px;
+    }
+    .account-chevron {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+      color: #999;
+    }
+    .account-trigger.open .account-chevron {
+      transform: rotate(180deg);
+    }
+    .account-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(.4,0,.2,1);
+    }
+    .account-body.open { max-height: 200px; }
+    .account-number {
+      font-size: 18px;
+      letter-spacing: 0.08em;
+      color: #1a1a1a;
+      font-weight: 500;
+      padding-bottom: 6px;
+    }
+    .account-bank {
+      font-size: 12px;
+      color: #999;
+      letter-spacing: 0.1em;
+      margin-bottom: 14px;
+    }
+    .copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      background: #1a1a1a;
+      color: #fff;
+      border: none;
+      padding: 9px 18px;
+      cursor: pointer;
+      border-radius: 2px;
+      margin-bottom: 20px;
+      transition: background 0.2s;
+    }
+    .copy-btn:hover { background: #333; }
+    .copy-btn.copied { background: #4a7c59; }
+
+    /* ── RSVP ── */
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+    .form-label {
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      color: #888;
+      text-transform: uppercase;
+    }
+    .form-input {
+      border: none;
+      border-bottom: 1px solid #ddd;
+      padding: 10px 0;
+      font-size: 15px;
+      font-family: 'Inter', sans-serif;
+      color: #1a1a1a;
+      background: transparent;
+      outline: none;
+      width: 100%;
+      transition: border-color 0.2s;
+    }
+    .form-input:focus { border-bottom-color: #1a1a1a; }
+    .form-radio-group {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+    .form-radio-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: #444;
+      cursor: pointer;
+    }
+    .form-radio-label input { accent-color: #1a1a1a; }
+    .submit-btn {
+      width: 100%;
+      background: #1a1a1a;
+      color: #fff;
+      border: none;
+      padding: 16px;
+      font-size: 12px;
+      letter-spacing: 0.35em;
+      cursor: pointer;
+      text-transform: uppercase;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.2s, transform 0.1s;
+      border-radius: 2px;
+      margin-top: 8px;
+    }
+    .submit-btn:hover { background: #333; }
+    .submit-btn:active { transform: scale(0.99); }
+
+    /* ── 방명록 ── */
+    .guestbook-entry {
+      border-bottom: 1px solid #f0ece6;
+      padding: 20px 0;
+    }
+    .guestbook-entry:first-child { border-top: 1px solid #f0ece6; }
+    .guestbook-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: #1a1a1a;
+      margin-bottom: 4px;
+    }
+    .guestbook-msg {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.7;
+    }
+    .guestbook-time {
+      font-size: 10px;
+      color: #bbb;
+      margin-top: 6px;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── 연락처 ── */
+    .contact-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      border: 1px solid #e8e4df;
+      padding: 16px 20px;
+      background: #fff;
+      text-decoration: none;
+      color: #1a1a1a;
+      transition: background 0.2s, border-color 0.2s;
+      border-radius: 2px;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+    .contact-btn:hover { background: #f8f5f0; border-color: #1a1a1a; }
+    .contact-btn-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .contact-group-label {
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      color: #aaa;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      margin-top: 28px;
+    }
+    .contact-group-label:first-child { margin-top: 0; }
+
+    /* ── Closing hero ── */
+    #closing {
+      height: 100dvh;
+    }
+    #closing .photo-bg {
+      background-image: url('assets/photos/day-05.jpg');
+    }
+
+    /* ── Section labels ── */
+    .section-eyebrow {
+      font-size: 9px;
+      letter-spacing: 0.5em;
+      text-transform: uppercase;
+      color: #bbb;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      font-weight: 300;
+      line-height: 1.15;
+      color: #1a1a1a;
+    }
+    .section-title-white {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      font-weight: 300;
+      line-height: 1.15;
+      color: #fff;
+    }
+
+    /* ── Toast ── */
+    #toast {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: #1a1a1a;
+      color: #fff;
+      padding: 12px 24px;
+      font-size: 12px;
+      letter-spacing: 0.15em;
+      border-radius: 2px;
+      transition: transform 0.35s cubic-bezier(.16,.84,.44,1), opacity 0.35s;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 9999;
+      white-space: nowrap;
+    }
+    #toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* ── Thin horizontal rule ── */
+    hr.thin {
+      border: none;
+      border-top: 1px solid #f0ece6;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+
+  <!-- ════════════════════════════════
+       01 · HERO — Full-screen
+  ════════════════════════════════ -->
+  <section id="hero" class="photo-section">
+    <div class="photo-bg" data-parallax="0.4" id="heroBg"></div>
+    <div class="photo-overlay"></div>
+    <div class="hero-content">
+      <!-- top -->
+      <div class="reveal">
+        <p class="hero-top-label">Wedding Invitation</p>
+      </div>
+      <!-- bottom -->
+      <div>
+        <div class="reveal reveal-delay-1">
+          <p class="hero-names">
+            <em>기훈</em>
+            <span class="hero-amp">&amp;</span>
+            <em>솔이</em>
+          </p>
+          <p class="hero-date">2026 · 12 · 13 · 일요일 오후 2시</p>
+        </div>
+        <div class="reveal reveal-delay-2" style="margin-top: 40px;">
+          <div class="scroll-hint">
+            <div class="scroll-line"></div>
+            <span>SCROLL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════
+       02 · 인사말
+  ════════════════════════════════ -->
+  <section class="white-section">
+    <div class="reveal" style="text-align:center;">
+      <p class="section-eyebrow">Greeting</p>
+    </div>
+    <div class="reveal reveal-delay-1" style="text-align:center; margin-bottom:32px;">
+      <p class="section-title">인사말</p>
+    </div>
+    <div class="reveal reveal-delay-2">
+      <p class="greeting-text" style="text-align:center;">
+        서로가 서로에게<br>
+        가장 아름다운 계절이 되어<br>
+        이제 한 길을 걷기로 했습니다.<br>
+        <br>
+        소중한 분들과 함께<br>
+        이 기쁨을 나누고 싶습니다.<br>
+        <br>
+        부족한 두 사람이<br>
+        평생을 함께하는 자리에<br>
+        따뜻한 마음으로<br>
+        함께해 주시면 감사하겠습니다.
+      </p>
+    </div>
+    <div class="reveal reveal-delay-3" style="margin-top:40px; text-align:center;">
+      <p style="font-size:13px; color:#888; letter-spacing:0.1em; line-height:2;">
+        윤OO · OOO의 장남 <strong style="color:#1a1a1a;">기훈</strong><br>
+        한OO · OOO의 차녀 <strong style="color:#1a1a1a;">솔이</strong>
+      </p>
+    </div>
+  </section>
+
+  <hr class="thin">
+
+  <!-- ════════════════════════════════
+       03 · 예식 일시 — Flip countdown
+  ════════════════════════════════ -->
+  <section class="white-section-sm">
+    <div class="reveal" style="text-align:center; margin-bottom:8px;">
+      <p class="section-eyebrow">Date & Time</p>
+    </div>
+    <div class="reveal reveal-delay-1" style="text-align:center; margin-bottom:36px;">
+      <p class="section-title">예식 일시</p>
+    </div>
+
+    <div class="reveal reveal-delay-2">
+      <div class="flip-clock">
+        <div class="flip-unit">
+          <div class="flip-card">
+            <div class="flip-card-inner" id="flip-d">00</div>
+          </div>
+          <span class="flip-label">DAYS</span>
+        </div>
+        <div class="flip-sep" style="line-height:72px; opacity:0.2;">:</div>
+        <div class="flip-unit">
+          <div class="flip-card">
+            <div class="flip-card-inner" id="flip-h">00</div>
+          </div>
+          <span class="flip-label">HRS</span>
+        </div>
+        <div class="flip-sep" style="line-height:72px; opacity:0.2;">:</div>
+        <div class="flip-unit">
+          <div class="flip-card">
+            <div class="flip-card-inner" id="flip-m">00</div>
+          </div>
+          <span class="flip-label">MIN</span>
+        </div>
+        <div class="flip-sep" style="line-height:72px; opacity:0.2;">:</div>
+        <div class="flip-unit">
+          <div class="flip-card">
+            <div class="flip-card-inner" id="flip-s">00</div>
+          </div>
+          <span class="flip-label">SEC</span>
+        </div>
+      </div>
+      <p class="countdown-date-label">2026년 12월 13일 일요일 오후 2시</p>
+    </div>
+
+    <div class="reveal reveal-delay-3" style="text-align:center; margin-top:36px;">
+      <div class="divider" style="background:#e8e4df; margin-bottom:24px;"></div>
+      <p style="font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:300; color:#1a1a1a; letter-spacing:0.04em;">
+        아펠가모 홀
+      </p>
+      <p style="font-size:12px; color:#888; letter-spacing:0.1em; margin-top:6px;">
+        서울 강남구
+      </p>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════
+       04 · 갤러리 — Parallax photo strips
+  ════════════════════════════════ -->
+  <section style="background:#0a0a0a; padding: 80px 0 0;">
+    <div style="text-align:center; padding: 0 32px 48px;">
+      <div class="reveal">
+        <p class="section-eyebrow" style="color:#666;">Gallery</p>
+      </div>
+      <div class="reveal reveal-delay-1">
+        <p class="section-title-white" style="font-size:36px;">우리의 이야기</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery strip 1 -->
+  <div class="photo-section gallery-strip reveal">
+    <div class="photo-bg" data-parallax="0.35" style="background-image: url('assets/photos/day-facing.jpg');"></div>
+    <div class="photo-overlay-top"></div>
+    <div style="position:absolute; inset:0; background:linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.5) 100%);"></div>
+    <div class="photo-content">
+      <p style="font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:300; font-style:italic; color:#fff; letter-spacing:0.02em;">
+        처음, 마주보던 순간
+      </p>
+    </div>
+    <span class="gallery-label">01 / 08</span>
+  </div>
+
+  <!-- Gallery strip 2 -->
+  <div class="photo-section gallery-strip reveal">
+    <div class="photo-bg" data-parallax="0.35" style="background-image: url('assets/photos/day-field.jpg');"></div>
+    <div class="photo-overlay"></div>
+    <div class="photo-content">
+      <p style="font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:300; font-style:italic; color:#fff; letter-spacing:0.02em;">
+        들판에서, 가장 자유롭게
+      </p>
+    </div>
+    <span class="gallery-label">02 / 08</span>
+  </div>
+
+  <!-- Gallery strip 3 -->
+  <div class="photo-section gallery-strip reveal">
+    <div class="photo-bg" data-parallax="0.35" style="background-image: url('assets/photos/day-path.jpg');"></div>
+    <div class="photo-overlay"></div>
+    <div class="photo-content">
+      <p style="font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:300; font-style:italic; color:#fff; letter-spacing:0.02em;">
+        같은 길을 걷기로 했어요
+      </p>
+    </div>
+    <span class="gallery-label">03 / 08</span>
+  </div>
+
+  <!-- Gallery strip 4 -->
+  <div class="photo-section gallery-strip reveal">
+    <div class="photo-bg" data-parallax="0.35" style="background-image: url('assets/photos/day-running.jpg');"></div>
+    <div class="photo-overlay"></div>
+    <div class="photo-content">
+      <p style="font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:300; font-style:italic; color:#fff; letter-spacing:0.02em;">
+        함께라면 어디든
+      </p>
+    </div>
+    <span class="gallery-label">04 / 08</span>
+  </div>
+
+  <!-- Gallery strip 5 -->
+  <div class="photo-section gallery-strip reveal">
+    <div class="photo-bg" data-parallax="0.35" style="background-image: url('assets/photos/day-tunnel.jpg');"></div>
+    <div class="photo-overlay"></div>
+    <div class="photo-content">
+      <p style="font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:300; font-style:italic; color:#fff; letter-spacing:0.02em;">
+        빛이 보이는 곳으로
+      </p>
+    </div>
+    <span class="gallery-label">05 / 08</span>
+  </div>
+
+  <!-- Gallery strip 6 -->
+  <div class="photo-section gallery-strip reveal">
+    <div class="photo-bg" data-parallax="0.35" style="background-image: url('assets/photos/night-stand.jpg');"></div>
+    <div class="photo-overlay"></div>
+    <div class="photo-content">
+      <p style="font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:300; font-style:italic; color:#fff; letter-spacing:0.02em;">
+        밤이 깊을수록 선명한 것들
+      </p>
+    </div>
+    <span class="gallery-label">06 / 08</span>
+  </div>
+
+  <!-- Gallery strip 7 -->
+  <div class="photo-section gallery-strip reveal">
+    <div class="photo-bg" data-parallax="0.35" style="background-image: url('assets/photos/night-sunflower.jpg');"></div>
+    <div class="photo-overlay"></div>
+    <div class="photo-content">
+      <p style="font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:300; font-style:italic; color:#fff; letter-spacing:0.02em;">
+        네 곁에 피어나는
+      </p>
+    </div>
+    <span class="gallery-label">07 / 08</span>
+  </div>
+
+  <!-- Gallery strip 8 -->
+  <div class="photo-section gallery-strip reveal">
+    <div class="photo-bg" data-parallax="0.35" style="background-image: url('assets/photos/night-sunset.jpg');"></div>
+    <div class="photo-overlay"></div>
+    <div class="photo-content">
+      <p style="font-family:'Cormorant Garamond',serif; font-size:22px; font-weight:300; font-style:italic; color:#fff; letter-spacing:0.02em;">
+        오늘의 마지막 빛처럼
+      </p>
+    </div>
+    <span class="gallery-label">08 / 08</span>
+  </div>
+
+  <!-- ════════════════════════════════
+       05 · 예식장 안내
+  ════════════════════════════════ -->
+  <section class="white-section">
+    <div class="reveal" style="text-align:center; margin-bottom:8px;">
+      <p class="section-eyebrow">Venue</p>
+    </div>
+    <div class="reveal reveal-delay-1" style="text-align:center; margin-bottom:36px;">
+      <p class="section-title">예식장 안내</p>
+    </div>
+
+    <div class="reveal reveal-delay-2">
+      <div class="map-placeholder">
+        <div class="map-pin"></div>
+        <span style="position:relative; z-index:1; margin-top:60px; font-size:11px; letter-spacing:0.2em; color:#999;">지도 로딩 중</span>
+      </div>
+    </div>
+
+    <div class="reveal reveal-delay-3" style="margin-top:28px;">
+      <div class="venue-info-row">
+        <span class="venue-icon">📍</span>
+        <div>
+          <p style="font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:400; line-height:1.2;">아펠가모 홀</p>
+          <p style="font-size:12px; color:#888; margin-top:4px; letter-spacing:0.05em; line-height:1.7;">
+            서울특별시 강남구<br>
+            영동대로 513, B2F
+          </p>
+        </div>
+      </div>
+      <div class="venue-info-row">
+        <span class="venue-icon">🗓</span>
+        <div>
+          <p style="font-size:14px; color:#1a1a1a; line-height:1.7;">
+            2026년 12월 13일 <span style="color:#888;">(일)</span><br>
+            오후 2시
+          </p>
+        </div>
+      </div>
+      <div class="venue-info-row">
+        <span class="venue-icon">🚇</span>
+        <div>
+          <p style="font-size:12px; color:#555; line-height:1.9;">
+            지하철 2·9호선 삼성역 5번 출구<br>
+            도보 3분
+          </p>
+        </div>
+      </div>
+      <div class="venue-info-row">
+        <span class="venue-icon">🚗</span>
+        <div>
+          <p style="font-size:12px; color:#555; line-height:1.9;">
+            코엑스 인터컨티넨탈 호텔 지하주차장<br>
+            2시간 무료 주차
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal reveal-delay-4" style="margin-top:24px; display:flex; gap:10px;">
+      <a href="https://naver.me/example" target="_blank"
+         style="flex:1; display:flex; align-items:center; justify-content:center; gap:6px; padding:13px; border:1px solid #e0dbd3; font-size:12px; letter-spacing:0.12em; color:#1a1a1a; text-decoration:none; transition:background 0.2s; border-radius:2px;"
+         onmouseover="this.style.background='#f8f5f0'" onmouseout="this.style.background=''">
+        네이버 지도
+      </a>
+      <a href="https://maps.kakao.com/example" target="_blank"
+         style="flex:1; display:flex; align-items:center; justify-content:center; gap:6px; padding:13px; border:1px solid #e0dbd3; font-size:12px; letter-spacing:0.12em; color:#1a1a1a; text-decoration:none; transition:background 0.2s; border-radius:2px;"
+         onmouseover="this.style.background='#f8f5f0'" onmouseout="this.style.background=''">
+        카카오 지도
+      </a>
+    </div>
+  </section>
+
+  <hr class="thin">
+
+  <!-- ════════════════════════════════
+       06 · 계좌번호
+  ════════════════════════════════ -->
+  <section class="white-section-sm">
+    <div class="reveal" style="text-align:center; margin-bottom:8px;">
+      <p class="section-eyebrow">Gift</p>
+    </div>
+    <div class="reveal reveal-delay-1" style="text-align:center; margin-bottom:12px;">
+      <p class="section-title">마음 전하기</p>
+    </div>
+    <div class="reveal reveal-delay-2" style="text-align:center; margin-bottom:36px;">
+      <p style="font-size:13px; color:#888; line-height:1.8;">
+        참석이 어려우신 분들께서는<br>
+        아래 계좌로 축하의 마음을 전해주셔도 됩니다.
+      </p>
+    </div>
+
+    <div class="reveal reveal-delay-3">
+      <!-- 신랑측 -->
+      <p style="font-size:10px; letter-spacing:0.4em; color:#bbb; text-transform:uppercase; margin-bottom:4px;">신랑측</p>
+      <div class="account-item">
+        <button class="account-trigger" onclick="toggleAccount(this)">
+          <div>
+            <p class="account-trigger-name">윤기훈 (본인)</p>
+            <p class="account-trigger-role">신랑</p>
+          </div>
+          <svg class="account-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </button>
+        <div class="account-body">
+          <p class="account-number">000 - 0000 - 0000</p>
+          <p class="account-bank">카카오뱅크</p>
+          <button class="copy-btn" onclick="copyAccount(this, '000-0000-0000')">
+            <span>복사하기</span>
+          </button>
+        </div>
+      </div>
+      <div class="account-item">
+        <button class="account-trigger" onclick="toggleAccount(this)">
+          <div>
+            <p class="account-trigger-name">윤OO (부)</p>
+            <p class="account-trigger-role">신랑 아버지</p>
+          </div>
+          <svg class="account-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </button>
+        <div class="account-body">
+          <p class="account-number">000 - 0000 - 0000</p>
+          <p class="account-bank">국민은행</p>
+          <button class="copy-btn" onclick="copyAccount(this, '000-0000-0000')">
+            <span>복사하기</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 신부측 -->
+      <p style="font-size:10px; letter-spacing:0.4em; color:#bbb; text-transform:uppercase; margin: 28px 0 4px;">신부측</p>
+      <div class="account-item">
+        <button class="account-trigger" onclick="toggleAccount(this)">
+          <div>
+            <p class="account-trigger-name">한솔이 (본인)</p>
+            <p class="account-trigger-role">신부</p>
+          </div>
+          <svg class="account-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </button>
+        <div class="account-body">
+          <p class="account-number">000 - 0000 - 0000</p>
+          <p class="account-bank">토스뱅크</p>
+          <button class="copy-btn" onclick="copyAccount(this, '000-0000-0000')">
+            <span>복사하기</span>
+          </button>
+        </div>
+      </div>
+      <div class="account-item">
+        <button class="account-trigger" onclick="toggleAccount(this)">
+          <div>
+            <p class="account-trigger-name">한OO (부)</p>
+            <p class="account-trigger-role">신부 아버지</p>
+          </div>
+          <svg class="account-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+        </button>
+        <div class="account-body">
+          <p class="account-number">000 - 0000 - 0000</p>
+          <p class="account-bank">신한은행</p>
+          <button class="copy-btn" onclick="copyAccount(this, '000-0000-0000')">
+            <span>복사하기</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="thin">
+
+  <!-- ════════════════════════════════
+       07 · RSVP
+  ════════════════════════════════ -->
+  <section class="cream-section">
+    <div class="reveal" style="text-align:center; margin-bottom:8px;">
+      <p class="section-eyebrow">RSVP</p>
+    </div>
+    <div class="reveal reveal-delay-1" style="text-align:center; margin-bottom:12px;">
+      <p class="section-title">참석 여부</p>
+    </div>
+    <div class="reveal reveal-delay-2" style="text-align:center; margin-bottom:36px;">
+      <p style="font-size:13px; color:#888; line-height:1.8;">
+        12월 6일(일)까지 참석 여부를<br>
+        알려주시면 감사하겠습니다.
+      </p>
+    </div>
+
+    <div class="reveal reveal-delay-3">
+      <form id="rsvpForm" onsubmit="submitRSVP(event)">
+        <div class="form-field">
+          <label class="form-label">성함</label>
+          <input class="form-input" type="text" name="name" placeholder="홍길동" required>
+        </div>
+        <div class="form-field">
+          <label class="form-label">연락처</label>
+          <input class="form-input" type="tel" name="phone" placeholder="010-0000-0000">
+        </div>
+        <div class="form-field">
+          <label class="form-label">참석 인원</label>
+          <input class="form-input" type="number" name="count" placeholder="1" min="1" max="10" value="1">
+        </div>
+        <div class="form-field">
+          <label class="form-label">참석 여부</label>
+          <div class="form-radio-group">
+            <label class="form-radio-label">
+              <input type="radio" name="attend" value="yes" checked> 참석합니다
+            </label>
+            <label class="form-radio-label">
+              <input type="radio" name="attend" value="no"> 참석이 어렵습니다
+            </label>
+          </div>
+        </div>
+        <div class="form-field">
+          <label class="form-label">식사 여부 (참석 시)</label>
+          <div class="form-radio-group">
+            <label class="form-radio-label">
+              <input type="radio" name="meal" value="yes" checked> 식사할게요
+            </label>
+            <label class="form-radio-label">
+              <input type="radio" name="meal" value="no"> 괜찮아요
+            </label>
+          </div>
+        </div>
+        <button type="submit" class="submit-btn">전달하기</button>
+      </form>
+    </div>
+  </section>
+
+  <hr class="thin">
+
+  <!-- ════════════════════════════════
+       08 · 방명록
+  ════════════════════════════════ -->
+  <section class="white-section-sm">
+    <div class="reveal" style="text-align:center; margin-bottom:8px;">
+      <p class="section-eyebrow">Guestbook</p>
+    </div>
+    <div class="reveal reveal-delay-1" style="text-align:center; margin-bottom:36px;">
+      <p class="section-title">방명록</p>
+    </div>
+
+    <div class="reveal reveal-delay-2">
+      <form id="guestForm" onsubmit="addGuest(event)" style="margin-bottom:32px;">
+        <div class="form-field">
+          <label class="form-label">이름</label>
+          <input class="form-input" type="text" id="guestName" placeholder="홍길동" required>
+        </div>
+        <div class="form-field">
+          <label class="form-label">축하 메시지</label>
+          <textarea class="form-input" id="guestMsg" rows="3" placeholder="두 분의 행복한 시작을 축하드립니다..." required
+            style="resize:none; font-family:'Inter',sans-serif; font-size:15px; line-height:1.7;"></textarea>
+        </div>
+        <button type="submit" class="submit-btn">남기기</button>
+      </form>
+    </div>
+
+    <div id="guestList" class="reveal reveal-delay-3">
+      <!-- Sample entries -->
+      <div class="guestbook-entry">
+        <p class="guestbook-name">이지은</p>
+        <p class="guestbook-msg">두 분의 사랑이 영원히 꽃처럼 피어나길 바랍니다. 행복하세요 ♡</p>
+        <p class="guestbook-time">2026.11.20</p>
+      </div>
+      <div class="guestbook-entry">
+        <p class="guestbook-name">박준서</p>
+        <p class="guestbook-msg">기훈아 솔이야 정말 축하해! 오래오래 행복하게 살아 :)</p>
+        <p class="guestbook-time">2026.11.18</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="thin">
+
+  <!-- ════════════════════════════════
+       09 · 연락처
+  ════════════════════════════════ -->
+  <section class="white-section-sm">
+    <div class="reveal" style="text-align:center; margin-bottom:8px;">
+      <p class="section-eyebrow">Contact</p>
+    </div>
+    <div class="reveal reveal-delay-1" style="text-align:center; margin-bottom:36px;">
+      <p class="section-title">연락처</p>
+    </div>
+
+    <div class="reveal reveal-delay-2">
+      <p class="contact-group-label">신랑 측</p>
+      <a href="tel:010-0000-0000" class="contact-btn">
+        <div class="contact-btn-icon" style="background:#f0ece6;">📞</div>
+        <div>
+          <p style="font-size:14px; font-weight:500;">윤기훈 <span style="font-size:12px; color:#888; font-weight:400;">(신랑)</span></p>
+          <p style="font-size:12px; color:#888; margin-top:2px;">010-0000-0000</p>
+        </div>
+      </a>
+      <a href="tel:010-0000-0000" class="contact-btn">
+        <div class="contact-btn-icon" style="background:#f0ece6;">📞</div>
+        <div>
+          <p style="font-size:14px; font-weight:500;">윤OO <span style="font-size:12px; color:#888; font-weight:400;">(신랑 아버지)</span></p>
+          <p style="font-size:12px; color:#888; margin-top:2px;">010-0000-0000</p>
+        </div>
+      </a>
+      <a href="tel:010-0000-0000" class="contact-btn">
+        <div class="contact-btn-icon" style="background:#f0ece6;">📞</div>
+        <div>
+          <p style="font-size:14px; font-weight:500;">OOO <span style="font-size:12px; color:#888; font-weight:400;">(신랑 어머니)</span></p>
+          <p style="font-size:12px; color:#888; margin-top:2px;">010-0000-0000</p>
+        </div>
+      </a>
+
+      <p class="contact-group-label">신부 측</p>
+      <a href="tel:010-0000-0000" class="contact-btn">
+        <div class="contact-btn-icon" style="background:#f5f0f8;">📞</div>
+        <div>
+          <p style="font-size:14px; font-weight:500;">한솔이 <span style="font-size:12px; color:#888; font-weight:400;">(신부)</span></p>
+          <p style="font-size:12px; color:#888; margin-top:2px;">010-0000-0000</p>
+        </div>
+      </a>
+      <a href="tel:010-0000-0000" class="contact-btn">
+        <div class="contact-btn-icon" style="background:#f5f0f8;">📞</div>
+        <div>
+          <p style="font-size:14px; font-weight:500;">한OO <span style="font-size:12px; color:#888; font-weight:400;">(신부 아버지)</span></p>
+          <p style="font-size:12px; color:#888; margin-top:2px;">010-0000-0000</p>
+        </div>
+      </a>
+      <a href="tel:010-0000-0000" class="contact-btn">
+        <div class="contact-btn-icon" style="background:#f5f0f8;">📞</div>
+        <div>
+          <p style="font-size:14px; font-weight:500;">OOO <span style="font-size:12px; color:#888; font-weight:400;">(신부 어머니)</span></p>
+          <p style="font-size:12px; color:#888; margin-top:2px;">010-0000-0000</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════
+       10 · CLOSING — Full-screen photo
+  ════════════════════════════════ -->
+  <section id="closing" class="photo-section">
+    <div class="photo-bg" data-parallax="0.4" id="closingBg"></div>
+    <div style="position:absolute; inset:0; background:rgba(0,0,0,0.45);"></div>
+    <div class="photo-content photo-content-center">
+      <div class="reveal">
+        <p style="font-size:9px; letter-spacing:0.55em; color:rgba(255,255,255,0.6); text-transform:uppercase; margin-bottom:24px;">
+          기훈 &amp; 솔이
+        </p>
+        <p class="section-title-white" style="font-size:clamp(36px,10vw,48px); font-style:italic; line-height:1.1; margin-bottom:20px;">
+          함께라서<br>행복합니다.
+        </p>
+        <div class="divider reveal-delay-1" style="background:rgba(255,255,255,0.35); margin:24px auto;"></div>
+        <p style="font-size:12px; letter-spacing:0.25em; color:rgba(255,255,255,0.7); margin-bottom:6px;">
+          2026년 12월 13일
+        </p>
+        <p style="font-size:11px; letter-spacing:0.2em; color:rgba(255,255,255,0.5);">
+          서울 강남구 아펠가모 홀
+        </p>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /#app -->
+
+<!-- Toast -->
+<div id="toast">복사되었습니다</div>
+
+<script>
+  // ── Parallax ──
+  const parallaxEls = document.querySelectorAll('[data-parallax]');
+  function updateParallax() {
+    parallaxEls.forEach(el => {
+      const factor = parseFloat(el.dataset.parallax) || 0.3;
+      const rect = el.parentElement.getBoundingClientRect();
+      const centerOffset = rect.top + rect.height / 2 - window.innerHeight / 2;
+      el.style.transform = `translateY(${centerOffset * factor}px)`;
+    });
+  }
+  window.addEventListener('scroll', updateParallax, { passive: true });
+  window.addEventListener('resize', updateParallax);
+  updateParallax();
+
+  // ── IntersectionObserver reveal ──
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => revealObs.observe(el));
+
+  // ── Flip-clock countdown ──
+  const TARGET = new Date('2026-12-13T14:00:00+09:00');
+  function pad(n) { return String(Math.max(0, n)).padStart(2, '0'); }
+  function tick() {
+    const diff = TARGET - Date.now();
+    if (diff <= 0) {
+      ['flip-d','flip-h','flip-m','flip-s'].forEach(id => { document.getElementById(id).textContent = '00'; });
+      return;
+    }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('flip-d').textContent = pad(d);
+    document.getElementById('flip-h').textContent = pad(h);
+    document.getElementById('flip-m').textContent = pad(m);
+    document.getElementById('flip-s').textContent = pad(s);
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // ── Account accordion ──
+  function toggleAccount(btn) {
+    const body = btn.nextElementSibling;
+    const isOpen = body.classList.contains('open');
+    // close all
+    document.querySelectorAll('.account-body').forEach(b => b.classList.remove('open'));
+    document.querySelectorAll('.account-trigger').forEach(b => b.classList.remove('open'));
+    if (!isOpen) {
+      body.classList.add('open');
+      btn.classList.add('open');
+    }
+  }
+
+  // ── Copy account number ──
+  let toastTimer;
+  function copyAccount(btn, number) {
+    navigator.clipboard.writeText(number).then(() => {
+      btn.classList.add('copied');
+      btn.querySelector('span').textContent = '복사 완료!';
+      showToast('계좌번호가 복사되었습니다');
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        btn.querySelector('span').textContent = '복사하기';
+      }, 2000);
+    }).catch(() => {
+      showToast('직접 복사해 주세요: ' + number);
+    });
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 2400);
+  }
+
+  // ── RSVP form ──
+  function submitRSVP(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.submit-btn');
+    btn.textContent = '전달 완료 ✓';
+    btn.style.background = '#4a7c59';
+    btn.disabled = true;
+    showToast('참석 여부가 전달되었습니다. 감사합니다!');
+  }
+
+  // ── Guestbook ──
+  function addGuest(e) {
+    e.preventDefault();
+    const name = document.getElementById('guestName').value.trim();
+    const msg  = document.getElementById('guestMsg').value.trim();
+    if (!name || !msg) return;
+
+    const now = new Date();
+    const date = `${now.getFullYear()}.${String(now.getMonth()+1).padStart(2,'0')}.${String(now.getDate()).padStart(2,'0')}`;
+
+    const entry = document.createElement('div');
+    entry.className = 'guestbook-entry';
+    entry.style.opacity = '0';
+    entry.style.transform = 'translateY(16px)';
+    entry.innerHTML = `
+      <p class="guestbook-name">${escHtml(name)}</p>
+      <p class="guestbook-msg">${escHtml(msg)}</p>
+      <p class="guestbook-time">${date}</p>
+    `;
+    const list = document.getElementById('guestList');
+    list.insertBefore(entry, list.firstChild);
+    requestAnimationFrame(() => {
+      entry.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      entry.style.opacity = '1';
+      entry.style.transform = 'translateY(0)';
+    });
+
+    document.getElementById('guestName').value = '';
+    document.getElementById('guestMsg').value = '';
+    showToast('방명록이 등록되었습니다 ♡');
+  }
+
+  function escHtml(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+</script>
+</body>
+</html>

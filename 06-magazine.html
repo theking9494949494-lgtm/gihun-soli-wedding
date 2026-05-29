@@ -1,0 +1,1449 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>기훈 &amp; 솔이 · ISSUE No.1 · DEC 2026</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --accent: #E8634F;
+      --ink: #111111;
+      --paper: #F7F5F0;
+      --gray-mid: #888888;
+      --gray-light: #DDDDDD;
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-font-smoothing: antialiased; background: #1a1a1a; }
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      max-width: 480px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .oswald { font-family: 'Oswald', sans-serif; }
+    .playfair { font-family: 'Playfair Display', serif; }
+    .noto { font-family: 'Noto Sans KR', sans-serif; }
+
+    /* Cover */
+    .cover-wrap {
+      position: relative;
+      width: 100%;
+      background: var(--ink);
+      overflow: hidden;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+    }
+    .cover-photo {
+      width: 100%;
+      height: 100svh;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: grayscale(20%) contrast(1.05);
+    }
+    .cover-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.55) 0%,
+        rgba(0,0,0,0.0) 38%,
+        rgba(0,0,0,0.0) 55%,
+        rgba(0,0,0,0.75) 100%
+      );
+    }
+    .cover-top-bar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      padding: 18px 20px 10px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      z-index: 10;
+    }
+    .cover-masthead {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      color: #fff;
+      line-height: 1.7;
+      text-transform: uppercase;
+    }
+    .cover-issue-badge {
+      background: var(--accent);
+      color: #fff;
+      font-family: 'Oswald', sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      padding: 4px 8px;
+      text-transform: uppercase;
+    }
+    .cover-main-title {
+      position: absolute;
+      left: 20px; right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      pointer-events: none;
+    }
+    .cover-main-title .label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 9.5px;
+      font-weight: 500;
+      letter-spacing: 0.35em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      display: block;
+    }
+    .cover-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.12;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+    }
+    .cover-headline em {
+      font-style: italic;
+      color: #f0ccc6;
+    }
+    .cover-bottom {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 20px 20px 28px;
+      z-index: 10;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .cover-deck {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 11px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.82);
+      line-height: 1.65;
+      flex: 1;
+    }
+    .barcode-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+    }
+    .barcode-svg {
+      width: 70px;
+      height: 30px;
+      opacity: 0.8;
+    }
+    .barcode-price {
+      font-family: 'Oswald', sans-serif;
+      font-size: 9px;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.08em;
+      text-align: right;
+    }
+    .cover-page-num {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Oswald', sans-serif;
+      font-size: 9px;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.2em;
+      z-index: 10;
+    }
+
+    /* Section common */
+    .mag-section {
+      padding: 40px 24px;
+      border-bottom: 1px solid var(--gray-light);
+      position: relative;
+    }
+    .section-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.45em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      display: block;
+    }
+    .section-num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 9px;
+      color: var(--gray-mid);
+      letter-spacing: 0.2em;
+    }
+    .section-rule {
+      border: none;
+      border-top: 2px solid var(--ink);
+      margin: 10px 0 18px;
+    }
+    .section-rule-thin {
+      border: none;
+      border-top: 1px solid var(--gray-light);
+      margin: 16px 0;
+    }
+    .mag-h1 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 1.05;
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+    }
+    .mag-h2 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 22px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .mag-h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    .body-text {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.85;
+      color: #333;
+    }
+    .pull-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 19px;
+      font-style: italic;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.45;
+      border-left: 3px solid var(--accent);
+      padding-left: 16px;
+      margin: 22px 0;
+    }
+    .page-num-inline {
+      font-family: 'Oswald', sans-serif;
+      font-size: 9px;
+      color: var(--gray-mid);
+      letter-spacing: 0.15em;
+    }
+
+    /* Editor's Note */
+    .editors-note-sig {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 20px;
+      color: var(--ink);
+      margin-top: 18px;
+    }
+
+    /* Feature / When & Where */
+    .feature-date-block {
+      background: var(--ink);
+      color: #fff;
+      padding: 22px 20px;
+      margin: 22px 0;
+    }
+    .feature-date-block .big-num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 64px;
+      font-weight: 700;
+      line-height: 0.9;
+      color: var(--accent);
+    }
+    .feature-date-block .date-label {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.75);
+      margin-top: 6px;
+      line-height: 1.7;
+    }
+    .sidebar-box {
+      background: #f0ede7;
+      border-left: 3px solid var(--ink);
+      padding: 16px 16px 14px;
+      margin: 22px 0;
+    }
+    .sidebar-box .sidebar-title {
+      font-family: 'Oswald', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gray-mid);
+      margin-bottom: 10px;
+      display: block;
+    }
+    .sidebar-box .info-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+    .sidebar-box .info-key {
+      font-family: 'Oswald', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      min-width: 48px;
+      padding-top: 1px;
+    }
+    .sidebar-box .info-val {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.65;
+      color: #222;
+    }
+
+    /* Photo Essay */
+    .photo-essay-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+    .photo-essay-grid .full-width {
+      grid-column: 1 / -1;
+    }
+    .photo-card {
+      position: relative;
+      overflow: hidden;
+      background: #ccc;
+    }
+    .photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(15%) contrast(1.05);
+      transition: transform 0.4s ease;
+    }
+    .photo-card:hover img { transform: scale(1.03); }
+    .photo-card .photo-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      padding: 18px 8px 7px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.85);
+      text-transform: uppercase;
+    }
+    .photo-card .photo-pnum {
+      position: absolute;
+      top: 6px; right: 8px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 9px;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.1em;
+    }
+    .photo-tall { height: 260px; }
+    .photo-mid { height: 180px; }
+    .photo-sq { height: 140px; }
+    .photo-short { height: 120px; }
+
+    /* Interview / Directions */
+    .qa-block { margin-bottom: 20px; }
+    .qa-q {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .qa-q::before {
+      content: 'Q.';
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      font-weight: 900;
+      color: var(--ink);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .qa-a {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: #333;
+      padding-left: 22px;
+    }
+    .map-placeholder {
+      width: 100%;
+      height: 160px;
+      background: #e0ddd7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--gray-light);
+      margin: 18px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .map-placeholder::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent 0px, transparent 29px,
+        rgba(0,0,0,0.06) 29px, rgba(0,0,0,0.06) 30px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        transparent 0px, transparent 29px,
+        rgba(0,0,0,0.06) 29px, rgba(0,0,0,0.06) 30px
+      );
+    }
+    .map-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      color: var(--gray-mid);
+      text-transform: uppercase;
+      z-index: 1;
+    }
+    .transport-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--ink);
+      color: #fff;
+      font-family: 'Oswald', sans-serif;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      padding: 4px 9px;
+      text-transform: uppercase;
+      margin: 3px 3px 3px 0;
+    }
+    .transport-tag.accent-tag {
+      background: var(--accent);
+    }
+
+    /* Gift Guide */
+    .gift-item {
+      border-bottom: 1px solid var(--gray-light);
+      padding: 18px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .gift-item:last-child { border-bottom: none; }
+    .gift-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--ink);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .gift-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+    .gift-account {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      color: #444;
+      letter-spacing: 0.04em;
+    }
+    .gift-copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      cursor: pointer;
+      background: none;
+      border: 1px solid var(--accent);
+      padding: 3px 8px;
+      margin-top: 6px;
+      transition: all 0.2s;
+    }
+    .gift-copy-btn:hover { background: var(--accent); color: #fff; }
+    .gift-copy-btn.copied { background: var(--ink); border-color: var(--ink); color: #fff; }
+
+    /* RSVP */
+    .rsvp-card {
+      border: 2px solid var(--ink);
+      padding: 24px 20px;
+      position: relative;
+      background: #fff;
+    }
+    .rsvp-card::before {
+      content: '';
+      position: absolute;
+      top: 6px; left: 6px; right: -6px; bottom: -6px;
+      background: var(--ink);
+      z-index: -1;
+    }
+    .rsvp-input {
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid var(--ink);
+      background: transparent;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      padding: 8px 2px;
+      outline: none;
+      color: var(--ink);
+    }
+    .rsvp-input::placeholder { color: #aaa; }
+    .rsvp-label {
+      font-family: 'Oswald', sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gray-mid);
+      display: block;
+      margin-bottom: 4px;
+      margin-top: 14px;
+    }
+    .rsvp-submit {
+      width: 100%;
+      background: var(--ink);
+      color: #fff;
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      border: none;
+      padding: 14px;
+      cursor: pointer;
+      margin-top: 22px;
+      transition: background 0.2s;
+    }
+    .rsvp-submit:hover { background: var(--accent); }
+
+    /* Guestbook / Letters */
+    .guestbook-entry {
+      border-left: 2px solid var(--gray-light);
+      padding-left: 14px;
+      margin-bottom: 18px;
+    }
+    .guestbook-entry.highlight { border-left-color: var(--accent); }
+    .guestbook-author {
+      font-family: 'Oswald', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gray-mid);
+      margin-bottom: 4px;
+    }
+    .guestbook-msg {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      font-style: italic;
+      line-height: 1.65;
+      color: #333;
+    }
+    .guestbook-new-input {
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid var(--ink);
+      background: transparent;
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 13px;
+      padding: 8px 2px;
+      outline: none;
+      resize: none;
+    }
+
+    /* Masthead / Contacts */
+    .masthead-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .masthead-table td {
+      padding: 6px 0;
+      font-size: 11px;
+      vertical-align: top;
+    }
+    .masthead-table .role {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray-mid);
+      font-size: 10px;
+      width: 90px;
+    }
+    .masthead-table .val {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-weight: 400;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    /* Back Cover */
+    .back-cover {
+      background: var(--ink);
+      color: #fff;
+      padding: 56px 28px 48px;
+      text-align: center;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+    }
+    .back-logo {
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+    .back-names {
+      font-family: 'Playfair Display', serif;
+      font-size: 38px;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1;
+    }
+    .back-names em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .back-date {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      color: rgba(255,255,255,0.55);
+      text-transform: uppercase;
+    }
+    .back-tagline {
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.75;
+      max-width: 260px;
+      text-align: center;
+    }
+    .back-barcode {
+      margin-top: 16px;
+      opacity: 0.3;
+    }
+
+    /* Divider flourish */
+    .flourish {
+      text-align: center;
+      font-family: 'Oswald', sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.35em;
+      color: var(--gray-mid);
+      margin: 12px 0;
+      text-transform: uppercase;
+    }
+
+    /* Scroll cue */
+    @keyframes bounceFade {
+      0%, 100% { opacity: 0.4; transform: translateY(0); }
+      50% { opacity: 0.9; transform: translateY(5px); }
+    }
+    .scroll-cue {
+      position: absolute;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 20;
+      animation: bounceFade 1.8s ease-in-out infinite;
+      font-family: 'Oswald', sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      text-align: center;
+    }
+    .scroll-cue svg { display: block; margin: 0 auto 4px; }
+
+    /* Notification toast */
+    #toast {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--ink);
+      color: #fff;
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      opacity: 0;
+      transition: all 0.3s ease;
+      pointer-events: none;
+      z-index: 999;
+      white-space: nowrap;
+    }
+    #toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===================== COVER ===================== -->
+<div class="cover-wrap">
+  <img class="cover-photo" src="assets/photos/main-sign.jpg" alt="기훈 & 솔이" loading="eager">
+  <div class="cover-overlay"></div>
+
+  <!-- Top bar -->
+  <div class="cover-top-bar">
+    <div>
+      <div class="cover-masthead">
+        LOVE &amp; LIFE<br>
+        <span style="font-weight:300;letter-spacing:0.1em;font-size:9px;opacity:0.7;">MOBILE WEDDING EDITION</span>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:5px;">
+      <div class="cover-issue-badge">VOL.1 · DEC 2026</div>
+      <div style="font-family:'Oswald',sans-serif;font-size:8.5px;color:rgba(255,255,255,0.5);letter-spacing:0.15em;">ISSUE No. 001</div>
+    </div>
+  </div>
+
+  <!-- Center teaser label -->
+  <div class="cover-main-title" style="top:42%;transform:translateY(-50%);">
+    <span class="label">Cover Story</span>
+    <div class="cover-headline">
+      기훈 &amp; 솔이,<br>
+      <em>영원을</em><br>
+      약속하다
+    </div>
+    <div style="margin-top:12px;font-family:'Noto Sans KR',sans-serif;font-size:11px;font-weight:300;color:rgba(255,255,255,0.7);line-height:1.7;">
+      2026년 12월 13일 · 아펠가모 홀
+    </div>
+  </div>
+
+  <!-- Bottom area -->
+  <div class="cover-bottom">
+    <div class="cover-deck">
+      이 계절,<br>
+      사랑이 완성됩니다
+    </div>
+    <div class="barcode-wrap">
+      <!-- SVG Barcode (decorative) -->
+      <svg class="barcode-svg" viewBox="0 0 80 34" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0"  y="0" width="2"  height="34" fill="white"/>
+        <rect x="4"  y="0" width="1"  height="34" fill="white"/>
+        <rect x="7"  y="0" width="3"  height="34" fill="white"/>
+        <rect x="12" y="0" width="1"  height="34" fill="white"/>
+        <rect x="15" y="0" width="2"  height="34" fill="white"/>
+        <rect x="19" y="0" width="1"  height="34" fill="white"/>
+        <rect x="22" y="0" width="3"  height="34" fill="white"/>
+        <rect x="27" y="0" width="1"  height="34" fill="white"/>
+        <rect x="30" y="0" width="2"  height="34" fill="white"/>
+        <rect x="34" y="0" width="1"  height="34" fill="white"/>
+        <rect x="37" y="0" width="3"  height="34" fill="white"/>
+        <rect x="42" y="0" width="1"  height="34" fill="white"/>
+        <rect x="45" y="0" width="2"  height="34" fill="white"/>
+        <rect x="49" y="0" width="1"  height="34" fill="white"/>
+        <rect x="52" y="0" width="3"  height="34" fill="white"/>
+        <rect x="57" y="0" width="1"  height="34" fill="white"/>
+        <rect x="60" y="0" width="2"  height="34" fill="white"/>
+        <rect x="64" y="0" width="1"  height="34" fill="white"/>
+        <rect x="67" y="0" width="3"  height="34" fill="white"/>
+        <rect x="72" y="0" width="1"  height="34" fill="white"/>
+        <rect x="75" y="0" width="2"  height="34" fill="white"/>
+        <rect x="79" y="0" width="1"  height="34" fill="white"/>
+      </svg>
+      <div class="barcode-price">20261213 · FREE</div>
+    </div>
+  </div>
+
+  <!-- Scroll cue -->
+  <div class="scroll-cue">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+      <path d="M2 5L7 10L12 5" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    SCROLL
+  </div>
+</div>
+
+
+<!-- ===================== EDITOR'S NOTE ===================== -->
+<section class="mag-section">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;">
+    <span class="section-label">Editor's Note</span>
+    <span class="section-num">P.02</span>
+  </div>
+  <hr class="section-rule">
+
+  <p class="mag-h2" style="margin-bottom:14px;font-size:20px;">인사말</p>
+
+  <p class="body-text">
+    가장 소중한 분들께,
+  </p>
+  <p class="body-text" style="margin-top:10px;">
+    저희 두 사람이 드디어 하나가 되는 날,<br>
+    여러분과 함께하고 싶습니다.
+  </p>
+  <p class="body-text" style="margin-top:10px;">
+    서로를 바라보며 웃음 짓던 날들이 쌓여<br>
+    이제 평생을 함께할 약속이 되었습니다.<br>
+    부족한 저희지만, 넘치는 사랑으로<br>
+    아름다운 가정을 이루어 나가겠습니다.
+  </p>
+  <p class="body-text" style="margin-top:10px;">
+    바쁘신 중에도 부디 참석하시어<br>
+    귀한 자리를 빛내주시면 더없는 기쁨이겠습니다.
+  </p>
+
+  <div style="margin-top:24px;padding-top:18px;border-top:1px solid var(--gray-light);">
+    <div style="font-family:'Oswald',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.3em;color:var(--gray-mid);text-transform:uppercase;margin-bottom:10px;">Groom</div>
+    <div style="font-family:'Noto Sans KR',sans-serif;font-size:12px;font-weight:300;color:#444;line-height:1.8;">
+      윤OO · OOO의 장남 <span style="font-weight:600;color:var(--ink);font-size:14px;">윤기훈</span>
+    </div>
+    <div style="font-family:'Oswald',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.3em;color:var(--gray-mid);text-transform:uppercase;margin-bottom:10px;margin-top:14px;">Bride</div>
+    <div style="font-family:'Noto Sans KR',sans-serif;font-size:12px;font-weight:300;color:#444;line-height:1.8;">
+      한OO · OOO의 차녀 <span style="font-weight:600;color:var(--ink);font-size:14px;">한솔이</span>
+    </div>
+  </div>
+
+  <div class="editors-note-sig" style="margin-top:22px;">
+    기훈 &amp; 솔이 드림
+  </div>
+  <div style="font-family:'Oswald',sans-serif;font-size:9px;color:var(--gray-mid);letter-spacing:0.15em;margin-top:4px;">EDITOR-IN-CHIEF</div>
+</section>
+
+
+<!-- ===================== FEATURE ARTICLE: DATE & VENUE ===================== -->
+<section class="mag-section">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;">
+    <span class="section-label">Feature Article</span>
+    <span class="section-num">P.04</span>
+  </div>
+  <hr class="section-rule">
+
+  <p class="mag-h1" style="font-size:28px;line-height:1.1;margin-bottom:10px;">
+    THE DATE<br>
+    <span style="color:var(--accent);">IS SET.</span>
+  </p>
+  <p style="font-family:'Noto Sans KR',sans-serif;font-size:12px;font-weight:300;color:var(--gray-mid);line-height:1.7;margin-bottom:4px;">
+    2026년 12월 13일 일요일 · 오후 2시<br>
+    서울 강남구 아펠가모 홀
+  </p>
+
+  <div class="pull-quote">
+    "함께여서 더 아름다운 날,<br>
+    모든 순간을 기억하겠습니다."
+  </div>
+
+  <p class="body-text">
+    12월의 서울, 아펠가모 홀에서 두 사람의 이야기가 새로운 챕터를 시작합니다. 겨울의 차가운 공기 속에서도 따스하게 빛날 그날, 여러분을 초대합니다.
+  </p>
+
+  <!-- Date Block -->
+  <div class="feature-date-block">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid rgba(255,255,255,0.12);padding-bottom:16px;margin-bottom:16px;">
+      <div>
+        <div style="font-family:'Oswald',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.3em;color:rgba(255,255,255,0.45);text-transform:uppercase;margin-bottom:4px;">DATE</div>
+        <div class="big-num">13</div>
+        <div class="date-label">2026년 12월<br>일요일</div>
+      </div>
+      <div style="border-left:1px solid rgba(255,255,255,0.12);padding-left:18px;">
+        <div style="font-family:'Oswald',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.3em;color:rgba(255,255,255,0.45);text-transform:uppercase;margin-bottom:4px;">TIME</div>
+        <div style="font-family:'Oswald',sans-serif;font-size:48px;font-weight:700;line-height:0.9;color:var(--accent);">2:00</div>
+        <div class="date-label">오후 2시<br>식사 및 피로연 포함</div>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'Oswald',sans-serif;font-size:9px;font-weight:500;letter-spacing:0.3em;color:rgba(255,255,255,0.45);text-transform:uppercase;margin-bottom:6px;">VENUE</div>
+      <div style="font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:#fff;">아펠가모 홀</div>
+      <div class="date-label">서울특별시 강남구 선릉로 지하 1층</div>
+    </div>
+  </div>
+
+  <!-- When & Where Sidebar -->
+  <div class="sidebar-box">
+    <span class="sidebar-title">When &amp; Where</span>
+    <div class="info-row">
+      <span class="info-key">DATE</span>
+      <span class="info-val">2026년 12월 13일 (일)</span>
+    </div>
+    <div class="info-row">
+      <span class="info-key">TIME</span>
+      <span class="info-val">오후 2시 (14:00)</span>
+    </div>
+    <div class="info-row">
+      <span class="info-key">VENUE</span>
+      <span class="info-val">아펠가모 (APELGAMO)<br>서울 강남구</span>
+    </div>
+    <div class="info-row">
+      <span class="info-key">DRESS</span>
+      <span class="info-val">Smart Casual / Formal</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== PHOTO ESSAY ===================== -->
+<section class="mag-section" style="padding-left:0;padding-right:0;padding-bottom:0;">
+  <div style="padding:0 24px;">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;">
+      <span class="section-label">Photo Essay</span>
+      <span class="section-num">P.06</span>
+    </div>
+    <hr class="section-rule">
+    <p class="mag-h2" style="font-size:18px;margin-bottom:6px;">우리의 이야기</p>
+    <p class="body-text" style="margin-bottom:20px;font-size:12px;">두 사람이 함께 걸어온 모든 순간들.</p>
+  </div>
+
+  <!-- Full width hero -->
+  <div class="photo-card full-width" style="height:320px;margin-bottom:6px;">
+    <img src="assets/photos/day-facing.jpg" alt="서로를 바라보며" loading="lazy">
+    <div class="photo-caption">서로를 바라보며 · 2026</div>
+    <div class="photo-pnum">06</div>
+  </div>
+
+  <!-- Grid layout -->
+  <div class="photo-essay-grid" style="padding:0 0 6px;">
+    <div class="photo-card photo-tall">
+      <img src="assets/photos/day-field.jpg" alt="들판에서" loading="lazy">
+      <div class="photo-caption">햇살 아래</div>
+      <div class="photo-pnum">07</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:6px;">
+      <div class="photo-card photo-mid" style="height:50%;">
+        <img src="assets/photos/day-path.jpg" alt="함께 걷는 길" loading="lazy">
+        <div class="photo-caption">우리의 길</div>
+        <div class="photo-pnum">08</div>
+      </div>
+      <div class="photo-card" style="flex:1;min-height:120px;">
+        <img src="assets/photos/night-sunflower.jpg" alt="해바라기" loading="lazy">
+        <div class="photo-caption">꽃처럼</div>
+        <div class="photo-pnum">09</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="photo-essay-grid" style="padding:0 0 6px;">
+    <div class="photo-card photo-mid">
+      <img src="assets/photos/day-running.jpg" alt="함께 달리며" loading="lazy">
+      <div class="photo-caption">함께 달리며</div>
+      <div class="photo-pnum">10</div>
+    </div>
+    <div class="photo-card photo-mid">
+      <img src="assets/photos/day-tunnel.jpg" alt="터널을 지나" loading="lazy">
+      <div class="photo-caption">빛을 향해</div>
+      <div class="photo-pnum">11</div>
+    </div>
+  </div>
+
+  <!-- Full width closer -->
+  <div class="photo-card full-width" style="height:280px;margin-bottom:6px;">
+    <img src="assets/photos/night-sunset.jpg" alt="저녁 노을" loading="lazy">
+    <div class="photo-caption">하루가 저물어도, 우리는 함께 · 2026</div>
+    <div class="photo-pnum">12</div>
+  </div>
+
+  <div class="photo-card full-width" style="height:220px;">
+    <img src="assets/photos/night-stand.jpg" alt="밤의 두 사람" loading="lazy">
+    <div class="photo-caption">밤이 되어도 · 영원히</div>
+    <div class="photo-pnum">13</div>
+  </div>
+
+  <div style="padding:18px 24px;border-top:1px solid var(--gray-light);">
+    <p class="flourish">— Photography by Studio &amp; Film —</p>
+  </div>
+</section>
+
+
+<!-- ===================== INTERVIEW: VENUE DIRECTIONS ===================== -->
+<section class="mag-section">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;">
+    <span class="section-label">Exclusive Interview</span>
+    <span class="section-num">P.14</span>
+  </div>
+  <hr class="section-rule">
+
+  <p class="mag-h2" style="font-size:18px;margin-bottom:4px;">HOW TO GET THERE</p>
+  <p style="font-family:'Noto Sans KR',sans-serif;font-size:11px;color:var(--gray-mid);margin-bottom:20px;">예식장 안내 · 아펠가모 홀</p>
+
+  <!-- Map placeholder -->
+  <div class="map-placeholder">
+    <span class="map-label">📍 APELGAMO · 강남</span>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">지하철로 어떻게 가나요?</div>
+    <div class="qa-a">
+      <span class="transport-tag accent-tag">지하철</span><br>
+      <strong>2호선 선릉역</strong> 하차 후 도보 5분<br>
+      <strong>수인분당선 선릉역</strong> 3번 출구
+    </div>
+  </div>
+
+  <hr class="section-rule-thin">
+
+  <div class="qa-block">
+    <div class="qa-q">버스를 이용하면 어떻게 되나요?</div>
+    <div class="qa-a">
+      <span class="transport-tag">간선버스</span>
+      <span class="transport-tag">지선버스</span><br>
+      선릉역 정류장 하차 후 도보 이동
+    </div>
+  </div>
+
+  <hr class="section-rule-thin">
+
+  <div class="qa-block">
+    <div class="qa-q">자가용으로 방문하시는 경우?</div>
+    <div class="qa-a">
+      <span class="transport-tag">주차 가능</span><br>
+      건물 내 지하주차장 이용 가능<br>
+      <span style="color:var(--accent);font-weight:500;">예식 당일 발렛 서비스 제공</span>
+    </div>
+  </div>
+
+  <hr class="section-rule-thin">
+
+  <div class="qa-block">
+    <div class="qa-q">택시 이용 시 안내 주소는?</div>
+    <div class="qa-a">
+      "서울 강남구 아펠가모" 또는<br>
+      내비게이션에 <strong>"아펠가모 선릉"</strong> 검색
+    </div>
+  </div>
+
+  <div style="margin-top:20px;">
+    <a href="https://map.kakao.com" target="_blank" rel="noopener"
+       style="display:block;width:100%;background:var(--ink);color:#fff;text-align:center;font-family:'Oswald',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;padding:14px;text-decoration:none;transition:background 0.2s;"
+       onmouseover="this.style.background='var(--accent)'" onmouseout="this.style.background='var(--ink)'">
+      카카오맵으로 보기 →
+    </a>
+  </div>
+</section>
+
+
+<!-- ===================== GIFT GUIDE ===================== -->
+<section class="mag-section">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;">
+    <span class="section-label">Gift Guide</span>
+    <span class="section-num">P.18</span>
+  </div>
+  <hr class="section-rule">
+
+  <p class="mag-h2" style="font-size:18px;margin-bottom:4px;">축의금 안내</p>
+  <p style="font-family:'Noto Sans KR',sans-serif;font-size:12px;font-weight:300;color:var(--gray-mid);line-height:1.7;margin-bottom:6px;">
+    마음만으로도 충분히 감사하지만,<br>소중한 분들의 정성에 보답할 수 있도록 안내드립니다.
+  </p>
+
+  <div style="border-top:2px solid var(--ink);padding-top:4px;">
+
+    <div class="gift-item">
+      <div class="gift-icon">♠</div>
+      <div style="flex:1;">
+        <div class="gift-name">신랑 · 윤기훈</div>
+        <div style="font-family:'Oswald',sans-serif;font-size:9px;color:var(--gray-mid);letter-spacing:0.2em;margin-bottom:4px;">GROOM'S ACCOUNT</div>
+        <div class="gift-account">카카오뱅크 3333-00-0000000</div>
+        <div style="font-family:'Noto Sans KR',sans-serif;font-size:11px;color:var(--gray-mid);margin-top:2px;">예금주 · 윤기훈</div>
+        <button class="gift-copy-btn" onclick="copyToClipboard('3333-00-0000000', this)">COPY ↗</button>
+      </div>
+    </div>
+
+    <div class="gift-item">
+      <div class="gift-icon" style="background:var(--accent);">♥</div>
+      <div style="flex:1;">
+        <div class="gift-name">신부 · 한솔이</div>
+        <div style="font-family:'Oswald',sans-serif;font-size:9px;color:var(--gray-mid);letter-spacing:0.2em;margin-bottom:4px;">BRIDE'S ACCOUNT</div>
+        <div class="gift-account">신한은행 110-000-000000</div>
+        <div style="font-family:'Noto Sans KR',sans-serif;font-size:11px;color:var(--gray-mid);margin-top:2px;">예금주 · 한솔이</div>
+        <button class="gift-copy-btn" onclick="copyToClipboard('110-000-000000', this)">COPY ↗</button>
+      </div>
+    </div>
+
+    <div class="gift-item">
+      <div class="gift-icon" style="background:#444;">♦</div>
+      <div style="flex:1;">
+        <div class="gift-name">신랑 혼주</div>
+        <div style="font-family:'Oswald',sans-serif;font-size:9px;color:var(--gray-mid);letter-spacing:0.2em;margin-bottom:4px;">GROOM'S PARENTS</div>
+        <div class="gift-account">국민은행 111-0000-0000-00</div>
+        <div style="font-family:'Noto Sans KR',sans-serif;font-size:11px;color:var(--gray-mid);margin-top:2px;">예금주 · 윤OO</div>
+        <button class="gift-copy-btn" onclick="copyToClipboard('111-0000-0000-00', this)">COPY ↗</button>
+      </div>
+    </div>
+
+    <div class="gift-item">
+      <div class="gift-icon" style="background:#666;">♣</div>
+      <div style="flex:1;">
+        <div class="gift-name">신부 혼주</div>
+        <div style="font-family:'Oswald',sans-serif;font-size:9px;color:var(--gray-mid);letter-spacing:0.2em;margin-bottom:4px;">BRIDE'S PARENTS</div>
+        <div class="gift-account">우리은행 1002-000-000000</div>
+        <div style="font-family:'Noto Sans KR',sans-serif;font-size:11px;color:var(--gray-mid);margin-top:2px;">예금주 · 한OO</div>
+        <button class="gift-copy-btn" onclick="copyToClipboard('1002-000-000000', this)">COPY ↗</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ===================== RSVP ===================== -->
+<section class="mag-section">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;">
+    <span class="section-label">Reader Response</span>
+    <span class="section-num">P.20</span>
+  </div>
+  <hr class="section-rule">
+
+  <p class="mag-h2" style="font-size:18px;margin-bottom:4px;">RSVP</p>
+  <p style="font-family:'Noto Sans KR',sans-serif;font-size:12px;font-weight:300;color:var(--gray-mid);line-height:1.7;margin-bottom:22px;">
+    참석 여부를 미리 알려주시면<br>더 잘 준비할 수 있어요.
+  </p>
+
+  <div class="rsvp-card" id="rsvp-form">
+    <div style="font-family:'Oswald',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.35em;color:var(--gray-mid);text-align:center;margin-bottom:20px;text-transform:uppercase;">
+      — Response Card —
+    </div>
+
+    <label class="rsvp-label">성함 · Name</label>
+    <input class="rsvp-input" type="text" id="rsvp-name" placeholder="홍길동">
+
+    <label class="rsvp-label">연락처 · Contact</label>
+    <input class="rsvp-input" type="tel" id="rsvp-tel" placeholder="010-0000-0000">
+
+    <label class="rsvp-label">참석 여부 · Attendance</label>
+    <div style="display:flex;gap:0;margin-top:8px;">
+      <label style="flex:1;cursor:pointer;">
+        <input type="radio" name="rsvp-attend" value="yes" style="display:none;" id="rsvp-yes" onchange="selectRsvp('yes')">
+        <div id="btn-yes" style="text-align:center;padding:10px;border:1px solid var(--ink);font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;background:#fff;color:var(--ink);transition:all 0.2s;cursor:pointer;" onclick="document.getElementById('rsvp-yes').checked=true;selectRsvp('yes')">
+          참석 ✓
+        </div>
+      </label>
+      <label style="flex:1;cursor:pointer;">
+        <input type="radio" name="rsvp-attend" value="no" style="display:none;" id="rsvp-no" onchange="selectRsvp('no')">
+        <div id="btn-no" style="text-align:center;padding:10px;border:1px solid var(--gray-light);border-left:none;font-family:'Oswald',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;background:#fff;color:#aaa;transition:all 0.2s;cursor:pointer;" onclick="document.getElementById('rsvp-no').checked=true;selectRsvp('no')">
+          불참 ✗
+        </div>
+      </label>
+    </div>
+
+    <label class="rsvp-label">메모 · Note</label>
+    <input class="rsvp-input" type="text" id="rsvp-note" placeholder="전달할 말씀이 있으시면 적어주세요">
+
+    <button class="rsvp-submit" onclick="submitRsvp()">SEND RESPONSE →</button>
+  </div>
+</section>
+
+
+<!-- ===================== LETTERS TO EDITOR (방명록) ===================== -->
+<section class="mag-section">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;">
+    <span class="section-label">Letters to the Editor</span>
+    <span class="section-num">P.22</span>
+  </div>
+  <hr class="section-rule">
+
+  <p class="mag-h2" style="font-size:18px;margin-bottom:4px;">방명록</p>
+  <p style="font-family:'Noto Sans KR',sans-serif;font-size:12px;font-weight:300;color:var(--gray-mid);line-height:1.7;margin-bottom:22px;">
+    축하의 마음을 남겨주세요.
+  </p>
+
+  <!-- Sample letters -->
+  <div class="guestbook-entry highlight">
+    <div class="guestbook-author">From the Editors · Featured Letter</div>
+    <div class="guestbook-msg">"두 분의 사랑이 세월이 흘러도 변하지 않기를 진심으로 바랍니다. 늘 행복하세요!"</div>
+  </div>
+  <div class="guestbook-entry">
+    <div class="guestbook-author">Anonymous Reader</div>
+    <div class="guestbook-msg">"기훈이 정말 잘 어울리는 두 분! 앞날이 축복으로 가득하길 바라며 ♡"</div>
+  </div>
+  <div class="guestbook-entry">
+    <div class="guestbook-author">A Loyal Subscriber</div>
+    <div class="guestbook-msg">"솔이 행복해! 기훈 오빠 잘 부탁해요. 영원히 사랑하세요 :)"</div>
+  </div>
+
+  <hr class="section-rule-thin" style="margin-top:24px;">
+
+  <!-- Write letter -->
+  <div style="margin-top:18px;">
+    <div style="font-family:'Oswald',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.3em;color:var(--gray-mid);text-transform:uppercase;margin-bottom:12px;">Write a Letter</div>
+    <label class="rsvp-label">보내시는 분</label>
+    <input class="guestbook-new-input" id="gb-name" type="text" placeholder="이름 (익명 가능)">
+    <label class="rsvp-label" style="margin-top:14px;">메시지</label>
+    <textarea class="guestbook-new-input" id="gb-msg" rows="3" placeholder="축하 메시지를 남겨주세요..."></textarea>
+    <button
+      style="margin-top:14px;width:100%;background:transparent;border:2px solid var(--ink);color:var(--ink);font-family:'Oswald',sans-serif;font-size:12px;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;padding:12px;cursor:pointer;transition:all 0.2s;"
+      onmouseover="this.style.background='var(--ink)';this.style.color='#fff'"
+      onmouseout="this.style.background='transparent';this.style.color='var(--ink)'"
+      onclick="submitGuestbook()">
+      PUBLISH LETTER →
+    </button>
+  </div>
+</section>
+
+
+<!-- ===================== CONTACTS / MASTHEAD ===================== -->
+<section class="mag-section">
+  <div style="display:flex;justify-content:space-between;align-items:baseline;">
+    <span class="section-label">Masthead</span>
+    <span class="section-num">P.24</span>
+  </div>
+  <hr class="section-rule">
+
+  <p class="mag-h2" style="font-size:18px;margin-bottom:18px;">연락처</p>
+
+  <table class="masthead-table">
+    <tr>
+      <td class="role">신랑</td>
+      <td class="val">
+        윤기훈<br>
+        <a href="tel:010-0000-0000" style="color:var(--accent);text-decoration:none;font-size:12px;">010-0000-0000</a>
+      </td>
+    </tr>
+    <tr><td colspan="2" style="padding:4px 0;"><hr style="border:none;border-top:1px solid var(--gray-light);"></td></tr>
+    <tr>
+      <td class="role">신부</td>
+      <td class="val">
+        한솔이<br>
+        <a href="tel:010-0000-0000" style="color:var(--accent);text-decoration:none;font-size:12px;">010-0000-0000</a>
+      </td>
+    </tr>
+    <tr><td colspan="2" style="padding:4px 0;"><hr style="border:none;border-top:1px solid var(--gray-light);"></td></tr>
+    <tr>
+      <td class="role">신랑측 혼주</td>
+      <td class="val">
+        부 윤OO&nbsp;&nbsp;<a href="tel:010-0000-0000" style="color:var(--accent);text-decoration:none;font-size:12px;">010-0000-0000</a><br>
+        모 OOO&nbsp;&nbsp;<a href="tel:010-0000-0000" style="color:var(--accent);text-decoration:none;font-size:12px;">010-0000-0000</a>
+      </td>
+    </tr>
+    <tr><td colspan="2" style="padding:4px 0;"><hr style="border:none;border-top:1px solid var(--gray-light);"></td></tr>
+    <tr>
+      <td class="role">신부측 혼주</td>
+      <td class="val">
+        부 한OO&nbsp;&nbsp;<a href="tel:010-0000-0000" style="color:var(--accent);text-decoration:none;font-size:12px;">010-0000-0000</a><br>
+        모 OOO&nbsp;&nbsp;<a href="tel:010-0000-0000" style="color:var(--accent);text-decoration:none;font-size:12px;">010-0000-0000</a>
+      </td>
+    </tr>
+    <tr><td colspan="2" style="padding:4px 0;"><hr style="border:none;border-top:1px solid var(--gray-light);"></td></tr>
+    <tr>
+      <td class="role">예식장</td>
+      <td class="val">
+        아펠가모<br>
+        <a href="tel:02-0000-0000" style="color:var(--accent);text-decoration:none;font-size:12px;">02-0000-0000</a>
+      </td>
+    </tr>
+  </table>
+
+  <div style="margin-top:24px;padding-top:18px;border-top:2px solid var(--ink);">
+    <div style="font-family:'Oswald',sans-serif;font-size:8px;font-weight:600;letter-spacing:0.3em;color:var(--gray-mid);text-transform:uppercase;">
+      LOVE &amp; LIFE MAGAZINE · VOL.1 · DEC 2026<br>
+      PRINTED IN SEOUL, KOREA · ISSUE No. 001
+    </div>
+  </div>
+</section>
+
+
+<!-- ===================== BACK COVER ===================== -->
+<div class="back-cover">
+  <div class="back-logo">LOVE &amp; LIFE MAGAZINE</div>
+
+  <div>
+    <div style="font-family:'Oswald',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.4em;color:var(--accent);text-transform:uppercase;margin-bottom:10px;">A SPECIAL EDITION</div>
+    <div class="back-names">기훈<br><em>&amp;</em><br>솔이</div>
+  </div>
+
+  <div class="back-date">2026 · 12 · 13</div>
+
+  <div class="back-tagline">
+    함께하는 모든 날이<br>
+    특별한 이야기가 됩니다
+  </div>
+
+  <!-- Decorative barcode -->
+  <div class="back-barcode">
+    <svg width="90" height="38" viewBox="0 0 90 38" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0"  y="0" width="2"  height="32" fill="white"/>
+      <rect x="4"  y="0" width="1"  height="32" fill="white"/>
+      <rect x="7"  y="0" width="3"  height="32" fill="white"/>
+      <rect x="12" y="0" width="1"  height="32" fill="white"/>
+      <rect x="15" y="0" width="2"  height="32" fill="white"/>
+      <rect x="19" y="0" width="1"  height="32" fill="white"/>
+      <rect x="22" y="0" width="3"  height="32" fill="white"/>
+      <rect x="27" y="0" width="1"  height="32" fill="white"/>
+      <rect x="30" y="0" width="2"  height="32" fill="white"/>
+      <rect x="34" y="0" width="1"  height="32" fill="white"/>
+      <rect x="37" y="0" width="3"  height="32" fill="white"/>
+      <rect x="42" y="0" width="1"  height="32" fill="white"/>
+      <rect x="45" y="0" width="2"  height="32" fill="white"/>
+      <rect x="49" y="0" width="1"  height="32" fill="white"/>
+      <rect x="52" y="0" width="3"  height="32" fill="white"/>
+      <rect x="57" y="0" width="1"  height="32" fill="white"/>
+      <rect x="60" y="0" width="2"  height="32" fill="white"/>
+      <rect x="64" y="0" width="1"  height="32" fill="white"/>
+      <rect x="67" y="0" width="3"  height="32" fill="white"/>
+      <rect x="72" y="0" width="1"  height="32" fill="white"/>
+      <rect x="75" y="0" width="2"  height="32" fill="white"/>
+      <rect x="79" y="0" width="1"  height="32" fill="white"/>
+      <rect x="82" y="0" width="3"  height="32" fill="white"/>
+      <rect x="87" y="0" width="1"  height="32" fill="white"/>
+      <text x="45" y="38" text-anchor="middle" font-family="Oswald,sans-serif" font-size="7" fill="white" opacity="0.5" letter-spacing="2">20261213-LOVE</text>
+    </svg>
+  </div>
+
+  <div style="font-family:'Oswald',sans-serif;font-size:8px;color:rgba(255,255,255,0.2);letter-spacing:0.15em;margin-top:8px;">
+    © 2026 윤기훈 · 한솔이 ALL RIGHTS RESERVED
+  </div>
+</div>
+
+
+<!-- Toast notification -->
+<div id="toast">COPIED TO CLIPBOARD</div>
+
+
+<script>
+  // Copy to clipboard
+  function copyToClipboard(text, btn) {
+    navigator.clipboard.writeText(text).then(() => {
+      const original = btn.textContent;
+      btn.textContent = 'COPIED ✓';
+      btn.classList.add('copied');
+      showToast();
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.classList.remove('copied');
+      }, 2000);
+    }).catch(() => {
+      // fallback
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      btn.textContent = 'COPIED ✓';
+      btn.classList.add('copied');
+      showToast();
+      setTimeout(() => {
+        btn.textContent = 'COPY ↗';
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  }
+
+  function showToast() {
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2200);
+  }
+
+  // RSVP radio styling
+  function selectRsvp(val) {
+    const btnYes = document.getElementById('btn-yes');
+    const btnNo = document.getElementById('btn-no');
+    if (val === 'yes') {
+      btnYes.style.background = 'var(--ink)';
+      btnYes.style.color = '#fff';
+      btnYes.style.borderColor = 'var(--ink)';
+      btnNo.style.background = '#fff';
+      btnNo.style.color = '#aaa';
+      btnNo.style.borderColor = 'var(--gray-light)';
+    } else {
+      btnNo.style.background = 'var(--accent)';
+      btnNo.style.color = '#fff';
+      btnNo.style.borderColor = 'var(--accent)';
+      btnYes.style.background = '#fff';
+      btnYes.style.color = '#aaa';
+      btnYes.style.borderColor = 'var(--gray-light)';
+    }
+  }
+
+  // RSVP submit
+  function submitRsvp() {
+    const name = document.getElementById('rsvp-name').value.trim();
+    const tel = document.getElementById('rsvp-tel').value.trim();
+    const attend = document.querySelector('input[name="rsvp-attend"]:checked');
+
+    if (!name) { alert('성함을 입력해주세요.'); return; }
+    if (!attend) { alert('참석 여부를 선택해주세요.'); return; }
+
+    const form = document.getElementById('rsvp-form');
+    form.innerHTML = `
+      <div style="text-align:center;padding:30px 0;">
+        <div style="font-family:'Oswald',sans-serif;font-size:36px;font-weight:700;color:var(--accent);margin-bottom:10px;">✓</div>
+        <div style="font-family:'Oswald',sans-serif;font-size:14px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:6px;">Response Received</div>
+        <div style="font-family:'Noto Sans KR',sans-serif;font-size:13px;font-weight:300;color:var(--gray-mid);line-height:1.8;">
+          ${name}님, 감사합니다.<br>
+          ${attend.value === 'yes' ? '함께할 수 있어 기쁩니다!' : '마음만으로도 충분해요 ♡'}
+        </div>
+      </div>`;
+  }
+
+  // Guestbook submit
+  function submitGuestbook() {
+    const name = document.getElementById('gb-name').value.trim() || '익명';
+    const msg = document.getElementById('gb-msg').value.trim();
+    if (!msg) { alert('메시지를 입력해주세요.'); return; }
+
+    const section = document.getElementById('gb-name').closest('.mag-section');
+    const entries = section.querySelector('.guestbook-entry:first-of-type').parentElement;
+
+    const newEntry = document.createElement('div');
+    newEntry.className = 'guestbook-entry';
+    newEntry.style.borderLeftColor = 'var(--accent)';
+    newEntry.innerHTML = `
+      <div class="guestbook-author">${name} · Just now</div>
+      <div class="guestbook-msg">"${msg}"</div>`;
+
+    entries.insertBefore(newEntry, entries.querySelector('.guestbook-entry'));
+
+    document.getElementById('gb-name').value = '';
+    document.getElementById('gb-msg').value = '';
+    showToast();
+    // Change toast text temporarily
+    document.getElementById('toast').textContent = 'LETTER PUBLISHED';
+    setTimeout(() => { document.getElementById('toast').textContent = 'COPIED TO CLIPBOARD'; }, 2500);
+  }
+</script>
+
+</body>
+</html>
