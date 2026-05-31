@@ -188,6 +188,15 @@
     #masthead.show{opacity:1;}
     #masthead span{font-family:'Cormorant Garamond',serif;font-size:15px;letter-spacing:.1em;color:var(--ink);}
     #masthead .hh{color:var(--gold);margin:0 5px;}
+    /* ── 인트로(오프닝) 효과 ── */
+    #intro{position:fixed;inset:0;z-index:300;background:#FAF7F2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;animation:introOut .9s cubic-bezier(.16,.84,.44,1) 1.8s forwards;}
+    #intro .ik{font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);opacity:0;animation:introFade .9s ease .3s forwards;}
+    #intro .iln{width:0;height:1px;background:var(--gold-lt);animation:introLine 1.1s cubic-bezier(.16,.84,.44,1) .45s forwards;}
+    #intro .inm{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;letter-spacing:.06em;color:var(--ink);opacity:0;animation:introFade 1s ease .6s forwards;}
+    #intro .inm .amp{font-style:italic;color:var(--gold);}
+    @keyframes introFade{to{opacity:1;}}
+    @keyframes introLine{to{width:90px;}}
+    @keyframes introOut{to{opacity:0;transform:translateY(-18px);visibility:hidden;}}
     #lb{position:fixed;inset:0;z-index:120;background:#fff;display:none;align-items:center;justify-content:center;padding:6px;touch-action:none;user-select:none;}
     #lb.open{display:flex;}
     #lb img{max-width:100%;max-height:94vh;object-fit:contain;-webkit-user-drag:none;user-select:none;}
@@ -203,6 +212,7 @@
 <body>
 <div class="page">
 
+  <div id="intro"><p class="ik">The Wedding of</p><div class="iln"></div><p class="inm">기훈 <span class="amp">&amp;</span> 솔이</p></div>
   <button id="bgm-toggle" aria-label="배경음악 켜기/끄기" title="배경음악"><span class="rg">♪</span></button>
   <audio id="bgm" loop preload="none"><source src="assets/audio/bgm.mp3" type="audio/mpeg"></audio>
   <button id="fx-toggle" aria-label="꽃가루 효과 켜기/끄기" title="꽃가루 효과">✿</button>
@@ -502,6 +512,9 @@
     lb.addEventListener('pointerup',endf);
   })();
 
+  /* ── 인트로 오버레이 제거 (애니 종료 후) ── */
+  setTimeout(function(){var el=document.getElementById('intro');if(el)el.style.display='none';},2900);
+
   /* ── 화면 확대(핀치 줌) 차단 ── */
   document.addEventListener('gesturestart',function(e){e.preventDefault();},{passive:false});
   document.addEventListener('gesturechange',function(e){e.preventDefault();},{passive:false});
@@ -526,7 +539,7 @@
   document.querySelectorAll('[data-acc]').forEach(b=>b.addEventListener('click',()=>{const it=b.closest('.acc-item');const o=it.classList.contains('open');document.querySelectorAll('.acc-item.open').forEach(x=>x.classList.remove('open'));if(!o)it.classList.add('open');}));
 
   /* ── copy (주소 등) ── */
-  document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>{navigator.clipboard.writeText(b.dataset.copy).then(()=>{const o=b.textContent;b.textContent='복사됨';b.classList.add('done');toast((b.dataset.label||'')+' 복사되었습니다');setTimeout(()=>{b.textContent=o;b.classList.remove('done');},1700);}).catch(()=>toast('복사 실패 — 길게 눌러 복사해 주세요'));}));
+  document.querySelectorAll('[data-copy]').forEach(b=>{const orig=b.textContent;let t;b.addEventListener('click',()=>{navigator.clipboard.writeText(b.dataset.copy).then(()=>{b.textContent='복사됨';b.classList.add('done');toast((b.dataset.label||'')+' 복사되었습니다');clearTimeout(t);t=setTimeout(()=>{b.textContent=orig;b.classList.remove('done');},1700);}).catch(()=>toast('복사 실패 — 길게 눌러 복사해 주세요'));});});
 
   /* ── guestbook ── */
   document.getElementById('gb-send').addEventListener('click',()=>{
