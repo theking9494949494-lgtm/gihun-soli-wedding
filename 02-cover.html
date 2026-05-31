@@ -48,7 +48,7 @@
     @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 
     /* ══ HERO (풀스크린 커버) ══ */
-    #hero{position:relative;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;padding:88px 30px 0;overflow:hidden;}
+    #hero{position:relative;min-height:var(--app-h,100svh);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;padding:88px 30px 0;overflow:hidden;}
     #hero .hero-bg{position:absolute;inset:0;background:#cfc6ba center 28%/cover no-repeat;background-image:url('assets/photos/hero-main.jpg');animation:kb 16s ease-in-out infinite alternate;}
     @keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.12)}}
     #hero .hero-veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,26,23,.58) 0%,rgba(28,26,23,.12) 46%,rgba(28,26,23,.42) 100%);}
@@ -174,7 +174,7 @@
     #bgm-toggle.on .rg{animation-play-state:running;}
     @keyframes spin{to{transform:rotate(360deg);}}
     /* ── 꽃가루(petal) 효과 — 상단 히어로 영역에만 ── */
-    #petals{position:absolute;top:0;left:0;width:100%;height:100svh;pointer-events:none;z-index:3;overflow:hidden;}
+    #petals{position:absolute;top:0;left:0;width:100%;height:var(--app-h,100svh);pointer-events:none;z-index:3;overflow:hidden;}
     #petals.off{display:none;}
     .petal{position:absolute;top:0;animation:pfall linear infinite;}
     .petal i{display:block;animation:psway ease-in-out infinite alternate;}
@@ -217,7 +217,7 @@
     <div class="hero-veil"></div>
     <div class="hero-inner">
       <p class="hero-kicker">We're getting married</p>
-      <p class="hero-type typer" data-type="저희, 결혼합니다" data-speed="120"></p>
+      <p class="hero-type">저희, 결혼합니다</p>
       <h1 class="hero-names">기훈 <span class="amp">&amp;</span> 솔이</h1>
       <p class="hero-date">2026 · 12 · 13 · SUN</p>
     </div>
@@ -227,7 +227,7 @@
   <!-- ════ INVITE (스크롤 타이핑) ════ -->
   <section id="invite">
     <div class="reveal"><div class="rule" style="margin-bottom:30px;"></div></div>
-    <p class="invite-type typer reveal d1" data-type="서로의 나무에서,¶서로의 울타리로." data-speed="100"></p>
+    <p class="invite-type reveal d1">서로의 나무에서,<br>서로의 울타리로.</p>
     <div class="reveal d2">
       <p class="body-ko" style="margin-top:30px;">
         6년의 시간 동안 서로의 나무가 되어주던 저희가,<br>
@@ -328,9 +328,10 @@
   <section>
     <div class="reveal" style="text-align:center;"><p class="label" style="margin-bottom:26px;">Directions</p></div>
     <div class="reveal d1">
-      <div class="way"><p class="t">자가용</p><p class="d">내비게이션에 <b>티웨딩 천안</b> 검색 · 건물 주차장 이용</p></div>
-      <div class="way"><p class="t">대중교통</p><p class="d">천안역 / 천안아산역 인근 · 상세 노선 추후 안내</p></div>
-      <div class="way"><p class="t">주차</p><p class="d">예식장 주차장 이용 가능 (상세 추후 안내)</p></div>
+      <div class="way"><p class="t">자가용</p><p class="d">내비게이션에 <b>티웨딩 천안</b> 또는 <b>목천읍 응원3길 27</b> 검색</p></div>
+      <div class="way"><p class="t">주차</p><p class="d">시간 제한 없이 <b>무료 주차</b> 가능</p></div>
+      <div class="way"><p class="t">셔틀버스</p><p class="d"><b>천안역 · 천안종합터미널</b>에서 셔틀버스 수시 운행 <span style="color:var(--muted);">(운행 시간 예식장 ☎ 041-555-7900 문의)</span></p></div>
+      <div class="way"><p class="t">대중교통</p><p class="d">천안역(기차) · 천안종합터미널 → 셔틀버스 또는 택시 이용</p></div>
     </div>
   </section>
 
@@ -501,6 +502,15 @@
     lb.addEventListener('touchend',endf);
     lb.addEventListener('pointerdown',start);
     lb.addEventListener('pointerup',endf);
+  })();
+
+  /* ── 뷰포트 높이 고정 (모바일 주소창 show/hide 시 화면 늘었다 줄었다 방지) ── */
+  (function(){
+    let lw=window.innerWidth;
+    const setH=()=>document.documentElement.style.setProperty('--app-h',window.innerHeight+'px');
+    setH();
+    window.addEventListener('resize',()=>{ if(window.innerWidth!==lw){ lw=window.innerWidth; setH(); } });
+    window.addEventListener('orientationchange',()=>setTimeout(setH,200));
   })();
 
   /* ── 마스트헤드 (스크롤 시 상단 타이틀) ── */
