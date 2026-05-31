@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
   <title>윤기훈 ♥ 한솔이 결혼합니다</title>
 
   <!-- 공유 미리보기 (카카오톡/링크) — 절대경로 (배포 URL 기준) -->
@@ -22,7 +22,7 @@
       --muted:#9B948A; --gold:#B0894F; --gold-lt:#CDB489; --line:#ECE7DD;
     }
     *{box-sizing:border-box;margin:0;padding:0;}
-    html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;scroll-behavior:smooth;}
+    html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;scroll-behavior:smooth;touch-action:pan-x pan-y;}
     body{background:#EFEBE4;color:var(--ink);font-family:'Noto Serif KR','Nanum Myeongjo',serif;font-weight:300;line-height:1.9;}
     .page{max-width:480px;margin:0 auto;background:var(--bg);position:relative;overflow-x:hidden;box-shadow:0 0 70px rgba(0,0,0,.12);}
     section{padding:88px 30px;}
@@ -503,6 +503,10 @@
     lb.addEventListener('pointerdown',start);
     lb.addEventListener('pointerup',endf);
   })();
+
+  /* ── 화면 확대(핀치 줌) 차단 ── */
+  document.addEventListener('gesturestart',function(e){e.preventDefault();},{passive:false});
+  document.addEventListener('gesturechange',function(e){e.preventDefault();},{passive:false});
 
   /* ── 뷰포트 높이 고정 (모바일 주소창 show/hide 시 화면 늘었다 줄었다 방지) ── */
   (function(){
