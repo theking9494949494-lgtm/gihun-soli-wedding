@@ -192,12 +192,12 @@
     #masthead .hh{color:var(--gold);margin:0 5px;}
     #lb{position:fixed;inset:0;z-index:120;background:#fff;display:none;align-items:center;justify-content:center;padding:6px;touch-action:none;user-select:none;}
     #lb.open{display:flex;}
-    #lb img{max-width:100%;max-height:96vh;object-fit:contain;-webkit-user-drag:none;user-select:none;transition:opacity .22s ease;}
-    #lb.swiping img{opacity:0;}
-    #lb .x{position:absolute;top:12px;right:16px;color:#1c1a17;font-size:30px;cursor:pointer;font-family:'Cormorant Garamond',serif;z-index:2;line-height:1;}
-    #lb .nv{position:absolute;top:50%;transform:translateY(-50%);color:#1c1a17;font-size:34px;cursor:pointer;padding:0 12px;user-select:none;font-family:'Cormorant Garamond',serif;z-index:2;opacity:.45;}
+    #lb img{max-width:100%;max-height:94vh;object-fit:contain;-webkit-user-drag:none;user-select:none;}
+    #lb .x{position:absolute;top:12px;right:16px;color:#1c1a17;font-size:30px;cursor:pointer;font-family:'Cormorant Garamond',serif;z-index:3;line-height:1;}
+    #lb .nv{position:absolute;top:50%;transform:translateY(-50%);background:none;border:none;color:#1c1a17;font-size:38px;cursor:pointer;padding:10px 12px;user-select:none;font-family:'Cormorant Garamond',serif;z-index:3;opacity:.55;text-shadow:0 1px 6px rgba(255,255,255,.9);transition:opacity .2s;}
     #lb .nv:hover{opacity:1;}
     #lb .pv{left:2px}#lb .nx{right:2px}
+    #lb .count{position:absolute;bottom:14px;left:0;right:0;text-align:center;color:#1c1a17;font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:.15em;z-index:3;}
     #toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--ink);color:#fff;font-family:'Noto Serif KR',serif;font-size:12px;padding:11px 22px;border-radius:999px;opacity:0;pointer-events:none;transition:.3s;z-index:200;white-space:nowrap;}
     #toast.show{opacity:1;transform:translateX(-50%);}
   </style>
@@ -219,7 +219,7 @@
       <p class="hero-kicker">We're getting married</p>
       <p class="hero-type">저희, 결혼합니다</p>
       <h1 class="hero-names">기훈 <span class="amp">&amp;</span> 솔이</h1>
-      <p class="hero-date">2026 · 12 · 13 · SUN</p>
+      <p class="hero-date">2026 · <b style="color:var(--gold-lt);font-weight:500;">12 · 13</b> · SUN</p>
     </div>
     <p class="scrollcue">Scroll</p>
   </section>
@@ -272,7 +272,7 @@
   <section id="cal-wrap">
     <div class="reveal">
       <p class="label" style="margin-bottom:14px;">The Day</p>
-      <p class="h-ko">2026년 12월 13일 일요일<br><span style="font-size:.7em;color:var(--muted);">낮 12시 · 티웨딩 천안 투게더홀</span></p>
+      <p class="h-ko">2026년 <b style="color:var(--gold);">12월 13일</b> 일요일<br><span style="font-size:.7em;color:var(--muted);"><b style="color:var(--gold);font-weight:500;">낮 12시</b> · 티웨딩 천안 투게더홀</span></p>
     </div>
     <div class="reveal d1">
       <div class="cal">
@@ -305,7 +305,7 @@
   <section style="text-align:center;">
     <div class="reveal">
       <p class="label" style="margin-bottom:14px;">Location</p>
-      <p class="venue-name">티웨딩 천안</p>
+      <p class="venue-name" style="color:var(--gold);">티웨딩 천안</p>
       <p class="body-ko" style="font-size:13px;margin-top:4px;">투게더홀</p>
       <p class="body-ko" style="font-size:12.5px;margin-top:2px;color:var(--ink2);" id="venue-addr">충청남도 천안시 동남구 목천읍 응원3길 27</p>
       <p class="cap" style="margin-top:5px;">예식장 문의 041-555-7900</p>
@@ -427,7 +427,7 @@
   </footer>
 </div>
 
-<div id="lb"><span class="x" id="lb-x">×</span><span class="nv pv" id="lb-pv">‹</span><img id="lb-img" src="" alt=""><span class="nv nx" id="lb-nx">›</span></div>
+<div id="lb"><span class="x" id="lb-x">×</span><span class="nv pv" id="lb-pv">‹</span><img id="lb-img" src="" alt=""><span class="nv nx" id="lb-nx">›</span><span class="count" id="lb-count"></span></div>
 <div id="toast"></div>
 
 <script>
@@ -483,11 +483,12 @@
     const gal=document.getElementById('gal');
     const more=document.getElementById('gal-more');
     if(more) more.addEventListener('click',()=>{gal.classList.toggle('expanded');more.textContent=gal.classList.contains('expanded')?'접기 −':'사진 더보기 +';});
-    const imgs=[...gal.querySelectorAll('img')];const lb=document.getElementById('lb'),li=document.getElementById('lb-img');let idx=0;
-    function open(n){idx=n;li.src=imgs[n].src;lb.classList.remove('swiping');lb.classList.add('open');document.body.style.overflow='hidden';}
+    const imgs=[...gal.querySelectorAll('img')];const lb=document.getElementById('lb'),li=document.getElementById('lb-img'),cnt=document.getElementById('lb-count');let idx=0;
+    imgs.forEach(im=>{const p=new Image();p.src=im.src;}); // 사전 로드 → 전환 시 깜빡임/중첩 방지
+    function render(){li.src=imgs[idx].src;if(cnt)cnt.textContent=(idx+1)+' / '+imgs.length;}
+    function open(n){idx=n;render();lb.classList.add('open');document.body.style.overflow='hidden';}
     function close(){lb.classList.remove('open');document.body.style.overflow='';}
-    function show(n){idx=(n+imgs.length)%imgs.length;lb.classList.add('swiping');setTimeout(()=>{li.src=imgs[idx].src;lb.classList.remove('swiping');},190);}
-    const mv=s=>show(idx+s);
+    const mv=s=>{idx=(idx+s+imgs.length)%imgs.length;render();};
     imgs.forEach((im,n)=>im.addEventListener('click',()=>open(n)));
     document.getElementById('lb-x').onclick=close;
     document.getElementById('lb-pv').onclick=()=>mv(-1);
