@@ -175,16 +175,26 @@
     #petals{position:absolute;top:0;left:0;width:100%;height:100svh;pointer-events:none;z-index:3;overflow:hidden;}
     #petals.off{display:none;}
     .petal{position:absolute;top:0;animation:pfall linear infinite;}
-    .petal i{display:block;background:linear-gradient(135deg,#f9e0e6,#e7b1be);border-radius:100% 0 100% 0;box-shadow:0 1px 2px rgba(0,0,0,.05);animation:psway ease-in-out infinite alternate;}
+    .petal i{display:block;animation:psway ease-in-out infinite alternate;}
+    #petals.fx-petal .petal i{background:linear-gradient(135deg,#f9e0e6,#e7b1be);border-radius:100% 0 100% 0;box-shadow:0 1px 2px rgba(0,0,0,.05);}
+    #petals.fx-snow .petal i{background:radial-gradient(circle at 35% 35%,#ffffff,#d8e4ef);border-radius:50%;box-shadow:0 0 5px rgba(170,195,220,.7);}
+    #petals.fx-sparkle .petal i{background:radial-gradient(circle,#fff6da,#e9c878);border-radius:50%;box-shadow:0 0 7px 1px rgba(225,185,105,.85);animation:psway ease-in-out infinite alternate,twinkle 1.7s ease-in-out infinite;}
+    @keyframes twinkle{0%,100%{opacity:1}50%{opacity:.25}}
     @keyframes pfall{0%{transform:translateY(-14svh);opacity:0;}10%{opacity:1;}90%{opacity:1;}100%{transform:translateY(110svh);opacity:0;}}
     @keyframes psway{0%{transform:translateX(-10px) rotate(-8deg);}100%{transform:translateX(10px) rotate(200deg);}}
     #fx-toggle{position:fixed;top:18px;left:max(16px,calc(50% - 240px + 16px));z-index:90;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.92);border:1px solid var(--gold-lt);box-shadow:0 4px 16px rgba(0,0,0,.1);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:15px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:opacity .2s;}
     #fx-toggle.off{opacity:.45;}
-    #lb{position:fixed;inset:0;z-index:120;background:rgba(20,18,15,.94);display:none;align-items:center;justify-content:center;padding:22px;}
+    #masthead{position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;z-index:80;display:flex;align-items:center;justify-content:center;height:48px;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);opacity:0;pointer-events:none;transition:opacity .45s ease;}
+    #masthead.show{opacity:1;}
+    #masthead span{font-family:'Cormorant Garamond',serif;font-size:15px;letter-spacing:.1em;color:var(--ink);}
+    #masthead .hh{color:var(--gold);margin:0 5px;}
+    #lb{position:fixed;inset:0;z-index:120;background:#fff;display:none;align-items:center;justify-content:center;padding:6px;touch-action:none;user-select:none;}
     #lb.open{display:flex;}
-    #lb img{max-width:100%;max-height:84vh;object-fit:contain;}
-    #lb .x{position:absolute;top:20px;right:24px;color:#fff;font-size:26px;cursor:pointer;font-family:'Cormorant Garamond',serif;}
-    #lb .nv{position:absolute;top:50%;transform:translateY(-50%);color:#fff;font-size:32px;cursor:pointer;padding:0 14px;user-select:none;font-family:'Cormorant Garamond',serif;}
+    #lb img{max-width:100%;max-height:96vh;object-fit:contain;-webkit-user-drag:none;user-select:none;transition:opacity .22s ease;}
+    #lb.swiping img{opacity:0;}
+    #lb .x{position:absolute;top:12px;right:16px;color:#1c1a17;font-size:30px;cursor:pointer;font-family:'Cormorant Garamond',serif;z-index:2;line-height:1;}
+    #lb .nv{position:absolute;top:50%;transform:translateY(-50%);color:#1c1a17;font-size:34px;cursor:pointer;padding:0 12px;user-select:none;font-family:'Cormorant Garamond',serif;z-index:2;opacity:.45;}
+    #lb .nv:hover{opacity:1;}
     #lb .pv{left:2px}#lb .nx{right:2px}
     #toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--ink);color:#fff;font-family:'Noto Serif KR',serif;font-size:12px;padding:11px 22px;border-radius:999px;opacity:0;pointer-events:none;transition:.3s;z-index:200;white-space:nowrap;}
     #toast.show{opacity:1;transform:translateX(-50%);}
@@ -197,6 +207,7 @@
   <audio id="bgm" loop preload="none"><source src="assets/audio/bgm.mp3" type="audio/mpeg"></audio>
   <button id="fx-toggle" aria-label="꽃가루 효과 켜기/끄기" title="꽃가루 효과">✿</button>
   <div id="petals" aria-hidden="true"></div>
+  <header id="masthead"><span>윤기훈 <i class="hh">♥</i> 한솔이</span></header>
 
   <!-- ════ HERO ════ -->
   <section id="hero">
@@ -469,21 +480,31 @@
     const more=document.getElementById('gal-more');
     if(more) more.addEventListener('click',()=>{gal.classList.toggle('expanded');more.textContent=gal.classList.contains('expanded')?'접기 −':'사진 더보기 +';});
     const imgs=[...gal.querySelectorAll('img')];const lb=document.getElementById('lb'),li=document.getElementById('lb-img');let idx=0;
-    const open=n=>{idx=n;li.src=imgs[n].src;lb.classList.add('open');};
-    const mv=s=>{idx=(idx+s+imgs.length)%imgs.length;li.src=imgs[idx].src;};
+    function open(n){idx=n;li.src=imgs[n].src;lb.classList.remove('swiping');lb.classList.add('open');document.body.style.overflow='hidden';}
+    function close(){lb.classList.remove('open');document.body.style.overflow='';}
+    function show(n){idx=(n+imgs.length)%imgs.length;lb.classList.add('swiping');setTimeout(()=>{li.src=imgs[idx].src;lb.classList.remove('swiping');},190);}
+    const mv=s=>show(idx+s);
     imgs.forEach((im,n)=>im.addEventListener('click',()=>open(n)));
-    document.getElementById('lb-x').onclick=()=>lb.classList.remove('open');
+    document.getElementById('lb-x').onclick=close;
     document.getElementById('lb-pv').onclick=()=>mv(-1);
     document.getElementById('lb-nx').onclick=()=>mv(1);
-    lb.addEventListener('click',e=>{if(e.target===lb)lb.classList.remove('open');});
+    lb.addEventListener('click',e=>{if(e.target===lb)close();});
+    lb.addEventListener('touchmove',e=>e.preventDefault(),{passive:false});
     /* 스와이프/드래그로 다음·이전 */
     let sx=0,sy=0,down=false;
     const start=e=>{const t=e.touches?e.touches[0]:e;sx=t.clientX;sy=t.clientY;down=true;};
-    const end=e=>{if(!down)return;down=false;const t=e.changedTouches?e.changedTouches[0]:e;const dx=t.clientX-sx,dy=t.clientY-sy;if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy))mv(dx<0?1:-1);};
+    const endf=e=>{if(!down)return;down=false;const t=e.changedTouches?e.changedTouches[0]:e;const dx=t.clientX-sx,dy=t.clientY-sy;if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy))mv(dx<0?1:-1);};
     lb.addEventListener('touchstart',start,{passive:true});
-    lb.addEventListener('touchend',end);
+    lb.addEventListener('touchend',endf);
     lb.addEventListener('pointerdown',start);
-    lb.addEventListener('pointerup',end);
+    lb.addEventListener('pointerup',endf);
+  })();
+
+  /* ── 마스트헤드 (스크롤 시 상단 타이틀) ── */
+  (function(){
+    const mh=document.getElementById('masthead'),hero=document.getElementById('hero');
+    if(!mh||!hero) return;
+    new IntersectionObserver(([e])=>mh.classList.toggle('show',!e.isIntersecting),{threshold:.15}).observe(hero);
   })();
 
   /* ── accordion ── */
@@ -550,7 +571,17 @@
       i.style.opacity=(0.55+Math.random()*0.4).toFixed(2);
       p.appendChild(i);wrap.appendChild(p);
     }
-    btn.addEventListener('click',()=>{wrap.classList.toggle('off');btn.classList.toggle('off');});
+    const modes=[{c:'fx-petal',i:'✿'},{c:'fx-snow',i:'❄'},{c:'fx-sparkle',i:'✦'},{c:'off',i:'✿'}];
+    let mi=0;
+    function apply(){
+      wrap.classList.remove('fx-petal','fx-snow','fx-sparkle','off');
+      const m=modes[mi];
+      if(m.c==='off'){wrap.classList.add('off');btn.classList.add('off');}
+      else{wrap.classList.add(m.c);btn.classList.remove('off');}
+      btn.textContent=m.i;
+    }
+    apply();
+    btn.addEventListener('click',()=>{mi=(mi+1)%modes.length;apply();});
   })();
 
   /* ── 배경음악 ── */
