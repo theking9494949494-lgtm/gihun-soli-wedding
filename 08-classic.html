@@ -406,10 +406,10 @@
     <div class="reveal reveal-delay-1">
       <div class="family-card">
         <p class="family-side">GROOM</p>
-        <!-- 故(고인) 표기 예: <span class="deceased">故 윤OO</span> 뒤에 🌼 추가 -->
-        <p class="family-parents">윤OO · 김OO 의</p>
+        <!-- 혼주 성함 확정 후 교체. 故(고인) 표기 예: <span class="deceased">故 OOO</span> 뒤에 🌼 -->
+        <p class="family-parents" style="color:var(--muted);">혼주 성함 추후 안내</p>
         <p class="family-child"><span class="rel">아들</span> 윤기훈</p>
-        <a class="family-call" href="tel:010-0000-0000">CALL · 신랑</a>
+        <span class="family-call" style="opacity:.45;pointer-events:none;">연락처 추후 안내</span>
       </div>
     </div>
 
@@ -417,16 +417,15 @@
     <div class="reveal reveal-delay-2">
       <div class="family-card">
         <p class="family-side">BRIDE</p>
-        <p class="family-parents">한OO · 이OO 의</p>
+        <p class="family-parents" style="color:var(--muted);">혼주 성함 추후 안내</p>
         <p class="family-child"><span class="rel">딸</span> 한솔이</p>
-        <a class="family-call" href="tel:010-0000-0001">CALL · 신부</a>
+        <span class="family-call" style="opacity:.45;pointer-events:none;">연락처 추후 안내</span>
       </div>
     </div>
 
-    <!-- 혼주에게 연락하기 -->
-    <div class="reveal reveal-delay-3" style="margin-top:20px; display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-      <a class="family-call" style="justify-content:center;" href="tel:010-0000-0002">신랑 혼주</a>
-      <a class="family-call" style="justify-content:center;" href="tel:010-0000-0004">신부 혼주</a>
+    <!-- 혼주에게 연락하기 (전화번호 확정 후 tel: 버튼으로 복원) -->
+    <div class="reveal reveal-delay-3" style="margin-top:20px; text-align:center;">
+      <p class="caption" style="color:var(--muted);">혼주 연락처는 추후 안내드리겠습니다.</p>
     </div>
   </section>
 
@@ -544,40 +543,17 @@
     </div>
 
     <div class="reveal reveal-delay-1">
-      <!-- 신랑측 -->
+      <!-- 계좌 확정 후 각 항목을 account-row + copy-btn 으로 복원 -->
       <div class="accordion-item">
         <button class="accordion-btn" data-accordion><span>신랑측 계좌번호</span><span class="accordion-icon">+</span></button>
         <div class="accordion-body"><div class="accordion-content">
-          <div class="account-row">
-            <div><p class="caption">신랑 윤기훈</p><p class="account-num">카카오뱅크 3333-00-0000000</p></div>
-            <button class="copy-btn" data-copy="3333000000000" data-bank="카카오뱅크">복사</button>
-          </div>
-          <div class="account-row">
-            <div><p class="caption">아버지 윤OO</p><p class="account-num">국민은행 000000-00-000000</p></div>
-            <button class="copy-btn" data-copy="00000000000000" data-bank="국민은행">복사</button>
-          </div>
-          <div class="account-row">
-            <div><p class="caption">어머니 김OO</p><p class="account-num">신한은행 110-000-000000</p></div>
-            <button class="copy-btn" data-copy="110000000000" data-bank="신한은행">복사</button>
-          </div>
+          <p class="caption" style="color:var(--muted); padding:6px 0;">추후 안내드리겠습니다.</p>
         </div></div>
       </div>
-      <!-- 신부측 -->
       <div class="accordion-item">
         <button class="accordion-btn" data-accordion><span>신부측 계좌번호</span><span class="accordion-icon">+</span></button>
         <div class="accordion-body"><div class="accordion-content">
-          <div class="account-row">
-            <div><p class="caption">신부 한솔이</p><p class="account-num">카카오뱅크 3333-00-1111111</p></div>
-            <button class="copy-btn" data-copy="3333001111111" data-bank="카카오뱅크">복사</button>
-          </div>
-          <div class="account-row">
-            <div><p class="caption">아버지 한OO</p><p class="account-num">우리은행 1002-000-000000</p></div>
-            <button class="copy-btn" data-copy="1002000000000" data-bank="우리은행">복사</button>
-          </div>
-          <div class="account-row">
-            <div><p class="caption">어머니 이OO</p><p class="account-num">농협은행 351-0000-0000-03</p></div>
-            <button class="copy-btn" data-copy="351000000000003" data-bank="농협은행">복사</button>
-          </div>
+          <p class="caption" style="color:var(--muted); padding:6px 0;">추후 안내드리겠습니다.</p>
         </div></div>
       </div>
     </div>
