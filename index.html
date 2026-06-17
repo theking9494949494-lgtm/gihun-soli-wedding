@@ -627,7 +627,7 @@
       try{
         map.innerHTML='';
         const c=new naver.maps.LatLng(VENUE.lat,VENUE.lng);
-        const mp=new naver.maps.Map(map,{center:c,zoom:16});
+        const mp=new naver.maps.Map(map,{center:c,zoom:17});
         new naver.maps.Marker({position:c,map:mp});
       }catch(e){ map.innerHTML=fb; }
     };
